@@ -1,0 +1,12 @@
+---
+- name: Copy Cert
+  copy: src="{{ nginx_certificate }}" dest=/etc/ssl/buildpay-nginx-bundle.crt
+
+- name: Copy Key
+  copy: src="{{ nginx_certificate_key }}" dest=/etc/ssl/buildpay-nginx.key
+
+- name: Copy DH Params for nginx
+  copy: src="{{ dh_params_certificate }}" dest=/etc/ssl/dhparams.pem
+
+- name: Set hostname
+  hostname: name={{ webapp_server_hostname }}

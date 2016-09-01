@@ -1,0 +1,100 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="project.members.index">Members</bp-breadcrumb>
+  <bp-breadcrumb>{{ $ctrl.member.user.full_name }}</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<div class="two-column-table tab-section">
+  <div class="row">
+    <bp-left-column>Email</bp-left-column>
+    <bp-right-column class="user-email">
+    {{ $ctrl.member.user.email }}
+    </bp-right-column>
+  </div>
+
+  <div class="row">
+    <bp-left-column>Invited</bp-left-column>
+    <bp-right-column class="user-created-at">
+    {{ $ctrl.member.user.created_at | date:'medium' }}
+    </bp-right-column>
+  </div>
+
+  <div class="row">
+    <bp-left-column>Registered</bp-left-column>
+    <bp-right-column class="user-registered-at">
+    {{ $ctrl.member.user.registered_at | date:'medium' }}
+    </bp-right-column>
+  </div>
+
+  <div class="row">
+    <bp-left-column>Status</bp-left-column>
+    <bp-right-column class="user-status">
+    {{ $ctrl.member.user.status }}
+    </bp-right-column>
+  </div>
+
+  <div class="row">
+    <bp-left-column inline>Project Role</bp-left-column>
+    <bp-right-column>
+    <div class="row collapse" ng-if="$ctrl.canUpdateRoleDescription()">
+      <div class="small-4 columns">
+        <input type="text" ng-model="$ctrl.member.role_description" name="role_description" maxlength="255" placeholder="Project Role">
+      </div>
+
+      <div class="small-1 columns end">
+        <button class="button tiny uppercase apply-role-description-button" ng-click="$ctrl.updateRoleDescription()">Apply</button>
+      </div>
+    </div>
+
+    <span class="inline role-description" ng-if="!$ctrl.canUpdateRoleDescription()">{{ $ctrl.member.role_description }}</span>
+    </bp-right-column>
+  </div>
+
+  <div class="row" ng-if="$ctrl.canViewBankAccountStatus()">
+    <bp-left-column inline>ACH Account</bp-left-column>
+    <bp-right-column>
+    <div class="row collapse">
+      <div class="small-4 columns" >
+        <span class="inline project-bank-account-name">{{ $ctrl.bankAccountNameText() }}</span>
+      </div>
+      <div class="small-1 columns end">
+        <button ng-if="$ctrl.canUpdateBankAccount()"
+                class="button tiny uppercase set-project-bank-account-link"
+                ui-sref="project.members.member.addBankAccount">Change</button>
+      </div>
+    </div>
+    </bp-right-column>
+  </div>
+
+  <div class="row section-title-row" ng-if="$ctrl.canViewCardInfo()">
+    <div class="small-3 columns title-column">
+      <h5>Card Details</h5>
+    </div>
+    <div class="small-6 columns clearfix">
+      <ul class="button-group right">
+        <li>
+        <bp-request-card-button member="$ctrl.member"></bp-request-card-button>
+        </li>
+        <li>
+        <bp-add-card-button member="$ctrl.member"></bp-add-card-button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="two-column-table tab-section" ng-if="$ctrl.canViewCardInfo()">
+    <div class="row card-requested-row">
+      <bp-left-column inline>Card Requested</bp-left-column>
+      <bp-right-column>
+      <span class="card-requested-text inline">{{ $ctrl.member.cardRequestedText() }}</span>
+      </bp-right-column>
+    </div>
+
+    <div class="row card-issued-row">
+      <bp-left-column inline>Card Issued</bp-left-column>
+      <bp-right-column>
+      <span class="card-issued-text inline">{{ $ctrl.member.cardIssuedText() }}</span>
+      </bp-right-column>
+    </div>
+  </div>
+
+</div>

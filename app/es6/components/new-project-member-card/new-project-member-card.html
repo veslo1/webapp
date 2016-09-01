@@ -1,0 +1,26 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="project.members({id: {{$ctrl.member.project_id}}})">
+    Members
+  </bp-breadcrumb>
+  <bp-breadcrumb link="project.members.member.view({id: {{$ctrl.member.project_id}}, memberId: {{$ctrl.member.id}} })">
+    {{ $ctrl.member.user.full_name }}
+  </bp-breadcrumb>
+  <bp-breadcrumb>Add Card Number</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<form name="$ctrl.form" ng-submit="$ctrl.addCardNumber()" novalidate>
+  <div class="two-column-table">
+    <div class="row" bp-field-class="$ctrl.form.card_number">
+      <bp-left-column inline>Card Number *</bp-left-column>
+
+      <bp-right-column input-column>
+        <input type="text" ng-model="$ctrl.card.number" name="card_number"  placeholder="Card Number" ui-mask="9999 9999 9999 9999"  ui-mask-placeholder ui-mask-placeholder-char="_" ui-options="{clearOnBlur: false}" bp-server-error bp-field-class="$ctrl.form.card_number" required>
+        <field-errors input-field="$ctrl.form.card_number"></field-errors>
+      </bp-right-column>
+    </div>
+
+    <bp-submit-row>
+      <input type="submit" name="submit" value="Update Card Number" class="button small small-expand uppercase" ng-disabled="$ctrl.form.$invalid">
+    </bp-submit-row>
+  </div>
+</form>

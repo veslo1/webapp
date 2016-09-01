@@ -1,0 +1,37 @@
+<div class="two-column-table">
+  <form name="$ctrl.form" ng-submit="$ctrl.save()" novalidate>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+        <p>Please enter the two amounts deposited into your bank
+        account. You are limited to two attempts.</p>
+      </div>
+    </div>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.amount1" label="Amount 1 *">
+      <right-content>
+        <bp-text-input-with-errors required
+          name="amount1"
+          model="$ctrl.deposits.amount1"
+          field-model="$ctrl.form.amount1"
+          placeholder="Amount 1" money-input bp-server-error></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.amount2" label="Amount 2 *">
+      <right-content>
+        <bp-text-input-with-errors required
+          name="amount2"
+          model="$ctrl.deposits.amount2"
+          field-model="$ctrl.form.amount2"
+          placeholder="Amount 2" money-input bp-server-error></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-submit-row>
+      <button type="submit" name="submit" class="button small small-expand uppercase" ng-disabled="$ctrl.form.$invalid || $ctrl.processing">{{ $ctrl.buttonText }}</button>
+    </bp-submit-row>
+  </form>
+</div>

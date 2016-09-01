@@ -1,0 +1,32 @@
+<div class="tab-section clearfix funder-org-offices">
+  <h4 class="inline">Offices</h4>
+  <button class="button tiny uppercase add-funder-organization-office-button inline right" ui-sref="funderOrg.offices.new">Add</button>
+  <hr/>
+
+  <div class="row collapse bp-table-row funder-org-offices headings">
+    <div class="small-4 columns name">
+      Name
+    </div>
+    <div class="show-for-medium-up small-4 columns location">
+      Location
+    </div>
+    <div class="show-for-medium-up small-4 columns location">
+      Primary Contact
+    </div>
+  </div>
+
+  <div class="row collapse bp-table-row funder-org-office" ng-repeat="funderOrgOffice in
+    $ctrl.funderOrgOffices">
+    <div class="small-4 columns funder-org-office-name">
+      <a ui-sref="funderOrg.offices.office.overview({ officeId: funderOrgOffice.id })">{{ funderOrgOffice.name }}</a>
+    </div>
+    <div class="show-for-medium-up small-4 columns funder-org-office-location">
+      <a ui-sref="funderOrg.offices.office.overview({ officeId: funderOrgOffice.id })"><city-state-postal address="funderOrgOffice.address"></city-state-postal></a>
+    </div>
+    <div class="show-for-medium-up small-4 columns funder-org-office-primary-contact">
+      <a ui-sref="funderOrg.offices.office.overview({ officeId: funderOrgOffice.id })">{{ funderOrgOffice.primary_contact_user.full_name }}</a>
+    </div>
+  </div>
+
+  <bp-no-entries-row ng-show="!$ctrl.funderOrgOffices.length">No offices</bp-no-entries-row>
+</div>

@@ -1,0 +1,82 @@
+<div class="tab-section clearfix">
+  <div class="row overview-funds-totals">
+    <div class="small-4 columns">
+      <h3 class="budgeted-total">{{ fundsTotals.total.budgeted | currency }}</h3>
+      <p>Budgeted</p>
+
+      <hr/>
+
+      <div class="row fund-number-row">
+        <div class="small-6 columns">
+          <label class="right">Materials</label>
+        </div>
+        <div class="small-6 columns budgeted-material">
+          {{ fundsTotals.material_funds.budgeted | currency }}
+        </div>
+      </div>
+      <div class="row fund-number-row">
+        <div class="small-6 columns">
+          <label class="right">Labor</label>
+        </div>
+        <div class="small-6 columns budgeted-labor">
+          {{ fundsTotals.labor_funds.budgeted | currency }}
+        </div>
+      </div>
+    </div>
+
+    <div class="small-4 columns">
+      <h3 class="allocated-total">{{ fundsTotals.total.allocated | currency }}</h3>
+      <p>Allocated</p>
+
+      <hr/>
+
+      <div class="row fund-number-row">
+        <div class="small-6 columns">
+          <label class="right">Materials</label>
+        </div>
+        <div class="small-6 columns allocated-material">
+          {{ fundsTotals.material_funds.allocated | currency }}
+        </div>
+      </div>
+      <div class="row fund-number-row">
+        <div class="small-6 columns">
+          <label class="right">Labor</label>
+        </div>
+        <div class="small-6 columns allocated-labor">
+          {{ fundsTotals.labor_funds.allocated | currency }}
+        </div>
+      </div>
+    </div>
+
+    <div class="small-4 columns">
+      <h3 class="spent-total">{{ fundsTotals.total.spent | currency }}</h3>
+      <p>Spent or Paid</p>
+
+      <hr/>
+
+      <div class="row fund-number-row">
+        <div class="small-6 columns">
+          <label class="right">Materials</label>
+        </div>
+        <div class="small-6 columns spent-material">
+          {{ fundsTotals.material_funds.spent | currency }}
+        </div>
+      </div>
+      <div class="row fund-number-row">
+        <div class="small-6 columns">
+          <label class="right">Labor</label>
+        </div>
+        <div class="small-6 columns spent-labor">
+          {{ fundsTotals.labor_funds.spent | currency }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row overview-funds-totals" ng-if="fundsTotals.project.permissions.canViewProjectSavings()">
+  <div class="small-4 small-centered columns">
+    <h3 class="savings-total">{{ fundsTotals.savings | currency }}</h3>
+    <p>Funds Remaining</p>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="merchants">Merchants</bp-breadcrumb>
+  <bp-breadcrumb link="merchant.view">{{ $ctrl.merchant.name }}</bp-breadcrumb>
+  <bp-breadcrumb link="merchant.location.view" no-separator="true">{{ $ctrl.merchantLocation.name }}</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<merchant-location-form
+  on-save="$ctrl.updateMerchantLocation(merchantLocation, form)"
+  merchant-id="$ctrl.merchantId"
+  merchant-location="$ctrl.merchantLocation"></merchant-location-form>

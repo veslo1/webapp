@@ -1,0 +1,16 @@
+<div class="row collapse user bp-table-row service-provider">
+  <div class="small-10 medium-5 columns user-full-name level-{{$ctrl.currentTreeLevel}}">
+    <bp-project-member-link project-id="$ctrl.serviceProvider.project_id" member-id="$ctrl.serviceProvider.user.id">{{ $ctrl.serviceProvider.user.full_name }}<span ng-if="$ctrl.serviceProvider.role_description"> ({{ $ctrl.serviceProvider.role_description }})<span></bp-project-member-link>
+  </div>
+
+  <div class="show-for-medium-up medium-5 columns user-email">
+    <bp-project-member-link project-id="$ctrl.serviceProvider.project_id" member-id="$ctrl.serviceProvider.user.id">{{ $ctrl.serviceProvider.user.email }}</bp-project-member-link>
+  </div>
+
+  <div class="small-2 columns user-status">
+    <bp-project-member-link project-id="$ctrl.serviceProvider.project_id" member-id="$ctrl.serviceProvider.user.id">{{ $ctrl.serviceProvider.user.status }}</bp-project-member-link>
+  </div>
+</div>
+
+<div ng-transclude></div>
+<project-service-provider service-provider="childServiceProvider" current-tree-level="$ctrl.currentTreeLevel + 1" ng-repeat="childServiceProvider in $ctrl.serviceProvider.children" ng-if="$ctrl.serviceProvider.children.length"></project-service-provider>

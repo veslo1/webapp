@@ -1,0 +1,13 @@
+<div class="row transaction-item fund-detail">
+  <div class="small-3 columns transacted-at" title="{{ ::$ctrl.transaction.transacted_at | date:'MM/dd/yyyy h:mm a' }}">
+    <a ui-sref="project.materials.card_transaction_details({transactionId: $ctrl.transaction.id})">{{ ::$ctrl.transaction.transacted_at | date:'MM/dd/yyyy' }}</a>
+  </div>
+  <div class="small-5 columns merchant-name">
+    <a ui-sref="project.materials.card_transaction_details({transactionId: $ctrl.transaction.id})">{{ ::$ctrl.transaction.merchant.name }}</a>
+  </div>
+  <div class="small-4 columns fund-amount number-column">
+    <a ui-sref="project.materials.card_transaction_details({transactionId:
+      $ctrl.transaction.id})" ng-class="{ refund: !$ctrl.transaction.sale}">{{
+    ::$ctrl.transaction.amountTextForType() | currency }}</a>
+  </div>
+</div>

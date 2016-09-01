@@ -1,0 +1,12 @@
+---
+- name: Update apt-get
+  apt: update_cache=yes
+
+- name: Upgrade apt-get
+  apt: upgrade=dist
+
+- name: Install git
+  apt: name=git state=latest
+
+- name: Install nodejs
+  apt: name=nodejs state=present

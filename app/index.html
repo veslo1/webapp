@@ -1,0 +1,48 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BuildPay</title>
+<meta name="description" content="BuildPay"/>
+<meta name="author" content="BuildPay"/>
+<meta name="copyright" content="BuildPay (c) 2015"/>
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!-- build:css(.) styles/vendor.css -->
+<link rel="stylesheet" href="jspm_packages/bower/angular-inform@0.0.18/dist/angular-inform.css">
+<link rel="stylesheet" href="jspm_packages/bower/animate.css@3.5.1/animate.css">
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/main.css -->
+<link rel="stylesheet" href="styles/main.css">
+<!-- endbuild -->
+</head>
+<body>
+<!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+<bp-app>Loading...</bp-app>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+!function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+  (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+  r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+}(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-78315026-1');
+ga('send', 'pageview');
+</script>
+
+<script>
+var doc = document.documentElement;
+doc.setAttribute('data-useragent', navigator.userAgent);
+</script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="bootstrap.min.js"></script>
+<!-- endbuild -->
+<div inform class="inform-animate inform-fixed inform-shadow"></div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="project.materials.overview">Materials</bp-breadcrumb>
+  <bp-breadcrumb>Card Transaction #{{ $ctrl.transaction.id }}</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<div class="tab-section two-column-table">
+  <div class="row transaction-detail">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Date</label>
+    </div>
+    <div class="small-9 medium-10 columns transacted-date">
+      {{ $ctrl.transaction.transacted_at | date:'medium' }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Merchant</label>
+    </div>
+    <div class="small-9 medium-10 columns merchant-name">
+      {{ $ctrl.transaction.merchant.name }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Sold By</label>
+    </div>
+    <div class="small-9 medium-10 columns sold-by">
+      {{ $ctrl.transaction.sold_by }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">SLSP Number</label>
+    </div>
+    <div class="small-9 medium-10 columns slsp-number">
+      {{ $ctrl.transaction.slsp_number }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">CSHR Number</label>
+    </div>
+    <div class="small-9 medium-10 columns cshr-number">
+      {{ $ctrl.transaction.cshr_number }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Subtotal</label>
+    </div>
+    <div class="small-9 medium-10 columns subtotal">
+      {{ $ctrl.transaction.subtotal | currency }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Sales Tax Amount</label>
+    </div>
+    <div class="small-9 medium-10 columns sales-tax-amount">
+      {{ $ctrl.transaction.sales_tax_amount | currency }} <span class="sales-tax-percent" ng-if="$ctrl.transaction.sales_tax_percent">({{ $ctrl.transaction.sales_tax_percent }}%)</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Type</label>
+    </div>
+    <div class="small-9 medium-10 columns transaction-type">
+      {{ $ctrl.transaction.typeText() }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Total</label>
+    </div>
+    <div class="small-9 medium-10 columns transaction-amount">
+      {{ $ctrl.transaction.amount | currency }}
+    </div>
+  </div>
+</div>
+
+<h4>Line Items</h4>
+<hr/>
+
+<div class="tab-section transaction-line-items">
+  <div class="row bp-table-row collapse line-item headings">
+    <div class="small-3 columns sku">
+      SKU
+    </div>
+
+    <div class="small-3 columns description">
+      Description
+    </div>
+
+    <div class="small-2 columns number-column quantity">
+      Quantity
+    </div>
+
+    <div class="small-2 columns number-column unit-price">
+      Unit Price
+    </div>
+
+    <div class="small-2 columns number-column net-amount">
+      Net Amount
+    </div>
+  </div>
+
+  <div class="row collapse bp-table-row line-item" ng-repeat="lineItem in $ctrl.transaction.line_items">
+    <div class="small-3 columns sku">
+      {{ lineItem.sku_number }}
+    </div>
+    <div class="small-3 columns description">
+      {{ lineItem.description }}
+    </div>
+    <div class="small-2 columns number-column quantity">
+      {{ lineItem.quantity }}
+    </div>
+    <div class="small-2 columns number-column unit-price">
+      {{ lineItem.unit_price | currency }}
+    </div>
+    <div class="small-2 columns number-column net-amount">
+      {{ lineItem.net_amount | currency }}
+    </div>
+  </div>
+
+  <bp-no-entries-row ng-if="!$ctrl.transaction.line_items.length">No line items</bp-no-entries-row>
+</div>

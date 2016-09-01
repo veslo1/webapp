@@ -1,0 +1,14 @@
+<div class="tab-section clearfix office-members">
+  <div class="row collapse user bp-table-row headings">
+    <div class="small-6 columns">
+      <label>Name</label>
+    </div>
+    <div class="show-for-medium-up small-6 columns end">
+      <label>Email</label>
+    </div>
+  </div>
+
+  <funder-organization-office-member office-member="officeMember" ng-repeat="officeMember in $ctrl.officeMembers" current-tree-level="0"></funder-organization-office-member>
+
+  <bp-no-entries-row ng-show="!$ctrl.officeMembers.length">No Members</bp-no-entries-row>
+</div>

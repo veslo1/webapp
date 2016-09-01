@@ -1,0 +1,73 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="funderOrg.offices.index">Offices</bp-breadcrumb>
+  <bp-breadcrumb link="funderOrg.offices.office.overview">{{ $ctrl.funderOffice.name }}</bp-breadcrumb>
+  <bp-breadcrumb>Add Responsible Individual</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<div class="two-column-table">
+  <form name="$ctrl.form" ng-submit="$ctrl.createOfficeAchAccount()" novalidate>
+
+    <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.first_name" label="First Name *">
+      <right-content>
+        <bp-text-input-with-errors
+          required="true"
+          field-model="$ctrl.form.first_name"
+          name="first_name"
+          model="$ctrl.achAccount.first_name"
+          placeholder="First Name"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+
+    <bp-two-column-row bp-field-class="$ctrl.form.last_name" label="Last Name *">
+      <right-content>
+        <bp-text-input-with-errors
+          required="true"
+          field-model="$ctrl.form.last_name"
+          name="last_name"
+          model="$ctrl.achAccount.last_name"
+          placeholder="Last Name"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.email" label="Email *">
+      <right-content>
+        <bp-email-input-with-errors
+          required="true"
+          field-model="$ctrl.form.email"
+          name="email"
+          model="$ctrl.achAccount.email"
+          placeholder="Email"></bp-email-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <div class="row" bp-field-class="$ctrl.form.ach_agreement">
+      <div class="small-9 small-offset-3 columns">
+        <div class="row">
+          <div class="small-12 columns tos-agreement-preface">
+            <p>
+            In order to use the payment functionality of our application, you must open a "White Label" account provided by Dwolla, Inc. ("Dwolla") and you must accept the <a href="https://www.dwolla.com/legal/tos?whitelabel" target="_blank">Dwolla Terms of Service</a> and <a href="https://www.dwolla.com/legal/privacy/" target="_blank">Privacy Policy</a>. Any funds held in the Dwolla account are held by Dwolla's financial institution partners as set out in the <a href="https://www.dwolla.com/legal/tos?whitelabel" target="_blank">Dwolla Terms of Service</a>. You authorize BuildPay to share your identity and account data with Dwolla for the purposes of opening and supporting your Dwolla account, and you are responsible for the accuracy and completeness of that data. You understand that you will access and manage your Dwolla account through the BuildPay application, and Dwolla account notifications will be sent by BuildPay, not Dwolla. BuildPay will provide customer support for your Dwolla account activity, and can be reached at 1.844.303.5123.
+            <p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-1 checkbox-column columns">
+            <input id="ach_agreement" class="tos-checkbox" type="checkbox" name="ach_agreement" ng-model="$ctrl.achAccount.ach_agreement" ng-true-value="'YES'" ng-false-value="'NO'" required>
+          </div>
+          <div class="small-11 columns end">
+            <label for="ach_agreement" class="tos-agreement">
+              I agree
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <bp-submit-row>
+      <input type="submit" name="submit" value="Add" class="button small-expand uppercase ach-account-submit-button" ng-disabled="$ctrl.form.$invalid">
+    </bp-submit-row>
+
+  </form>
+</div>

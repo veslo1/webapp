@@ -1,0 +1,61 @@
+<div class="tab-section clearfix transactions">
+  <div class="row collapse transaction bp-table-row headings">
+    <div class="small-3 columns transaction-date">
+      Date
+    </div>
+
+    <div class="small-9 columns">
+      <div class="small-3 columns user-full-name">
+        User
+      </div>
+
+      <div class="small-3 columns project-name">
+        Project
+      </div>
+
+      <div class="small-3 columns merchant-name">
+        Merchant
+      </div>
+
+      <div class="small-3 columns number-column transaction-amount">
+        Amount
+      </div>
+    </div>
+  </div>
+
+  <div class="row collapse bp-table-row transaction" ng-repeat="transaction in
+    $ctrl.transactions">
+    <div class="small-3 columns transaction-date">
+      <a ui-sref="transaction({ id: transaction.id })">{{ transaction.transacted_at | date:'medium' }}</a>
+    </div>
+
+    <div class="small-9 columns">
+      <div class="small-3 columns user-full-name">
+        <a ui-sref="transaction({ id: transaction.id })">{{ transaction.card.user.full_name }}</a>
+      </div>
+
+      <div class="small-3 columns project-name">
+        <a ui-sref="transaction({ id: transaction.id })">{{ transaction.project.name }}</a>
+      </div>
+
+      <div class="small-3 columns merchant-name">
+        <a ui-sref="transaction({ id: transaction.id })">{{ transaction.merchant.name }}</a>
+      </div>
+
+      <div class="small-3 columns number-column transaction-amount">
+        <a ui-sref="transaction({ id: transaction.id })" ng-class="{ refund: !transaction.sale}">
+          {{ transaction.amountTextForType() | currency }}</a>
+      </div>
+    </div>
+  </div>
+
+  <bp-no-entries-row ng-show="!$ctrl.transactions.length">No transactions</bp-no-entries-row>
+</div>
+
+<div class="pagination-centered">
+  <ul class="pagination">
+    <li ng-class="{ unavailable: !$ctrl.isPreviousEnabled() }" class="arrow previous-page-link"><a ui-sref="transactions({ page: $ctrl.currentPage - 1 })">&laquo; Previous</a></li>
+    <li class="current current-page-link"><a href="">{{ $ctrl.currentPage }}</a></li>
+    <li ng-class="{ unavailable: !$ctrl.isNextEnabled() }" class="arrow next-page-link"><a ui-sref="transactions({ page: $ctrl.currentPage + 1 })">Next &raquo;</a></li>
+  </ul>
+</div>

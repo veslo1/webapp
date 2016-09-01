@@ -1,0 +1,12 @@
+<div class="row collapse user bp-table-row office-member">
+  <div class="small-6 columns user-full-name level-{{$ctrl.currentTreeLevel}}">
+    <a ui-sref="funderOrg.offices.office.editMember({ memberId: $ctrl.officeMember.id })">{{ $ctrl.officeMember.user.full_name }}</a>
+  </div>
+
+  <div class="show-for-medium-up medium-6 columns user-email">
+    <a ui-sref="funderOrg.offices.office.editMember({ memberId: $ctrl.officeMember.id })">{{ $ctrl.officeMember.user.email }}</a>
+  </div>
+</div>
+
+<div ng-transclude></div>
+<funder-organization-office-member office-member="childOfficeMember" current-tree-level="$ctrl.currentTreeLevel + 1" ng-repeat="childOfficeMember in $ctrl.officeMember.children" ng-if="$ctrl.officeMember.children.length"></funder-organization-office-member>

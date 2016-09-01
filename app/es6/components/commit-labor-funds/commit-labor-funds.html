@@ -1,0 +1,49 @@
+<div class="row collapse inline-form">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <h4>Commit Labor Funds</h4>
+      </div>
+    </div>
+
+    <form class="commit-labor-funds-form" name="$ctrl.form" ng-submit="$ctrl.commitFunds()" novalidate>
+      <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+      <div class="row">
+        <div class="small-5 columns">
+          <label>Commit To *</label>
+        </div>
+        <div class="small-5 columns end">
+          <label>
+            <span class="pull-left">Amount *</span>
+            <span class="pull-right">Max {{ $ctrl.availableAmount | currency }}</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-5 columns">
+          <select name="commit_to_user" bp-field-class="$ctrl.form.commit_to_user" ng-model="$ctrl.newCommitment.user_id" required>
+            <option value="">-- Select a User --</option>
+
+            <option ng-repeat="user in $ctrl.potentialReceivers"
+            value="{{user.id}}">{{user.full_name}}</option>
+          </select>
+
+          <field-errors input-field="$ctrl.form.commit_to_user"></field-errors>
+        </div>
+
+        <div class="small-5 columns">
+          <input type="text" ng-model="$ctrl.newCommitment.fund_amount" name="fund_amount"  placeholder="Amount" bp-server-error ui-money-mask min="0.01" bp-field-class="$ctrl.form.fund_amount" required>
+
+          <field-errors input-field="$ctrl.form.fund_amount"></field-errors>
+        </div>
+
+        <div class="small-2 text-right columns">
+          <input type="submit" name="submit" value="Commit Funds" class="button
+          tiny uppercase submit-button" ng-disabled="$ctrl.form.$invalid">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

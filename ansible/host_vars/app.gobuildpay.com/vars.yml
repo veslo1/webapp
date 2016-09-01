@@ -1,0 +1,12 @@
+---
+
+webapp_server_hostname: app.gobuildpay.com
+api_server_url: https://api.gobuildpay.com
+
+codeship_user_authorized_key: ~/Dropbox/SketchDev/codeship_webapp_key.pub
+deploy_user_authorized_key: ~/.ssh/id_rsa.pub
+
+nginx_certificate_key: ~/Dropbox/SketchDev/gobuildpay.com/gobuildpay.com.key
+nginx_certificate: ~/Dropbox/SketchDev/gobuildpay.com/gobuildpay.com-bundle.crt
+
+dh_params_certificate: ~/Dropbox/SketchDev/gobuildpay.com/dhparam.pem

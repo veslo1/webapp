@@ -1,0 +1,37 @@
+<div class="payout-request-form row collapse inline-form">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <h4>Request Payout</h4>
+      </div>
+    </div>
+
+    <form class="request-payout-form" name="$ctrl.form"
+      ng-submit="$ctrl.requestPayout()" novalidate>
+      <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+      <div class="row">
+        <div class="small-4 columns end">
+          <label bp-field-class="$ctrl.form.fund_amount">
+            <span class="pull-left">Amount *</span>
+            <span class="pull-right">Max {{ $ctrl.availableAmount | currency }}</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-4 columns">
+          <input type="text"
+          ng-model="$ctrl.newPayout.fund_amount"
+          name="fund_amount" bp-field-class="$ctrl.form.fund_amount"
+          placeholder="Amount" bp-server-error ui-money-mask min="0.01" required>
+          <field-errors input-field="$ctrl.form.fund_amount"></field-errors>
+        </div>
+
+        <div class="small-8 columns">
+          <input type="submit" name="submit" value="Request Payout" class="button tiny small-expand uppercase submit-button" ng-disabled="$ctrl.form.$invalid">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="two-column-table">
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label class="right">Email</label>
+    </div>
+    <div class="small-9 medium-10 columns">
+      <span class="user-email">{{ $ctrl.user.email }}</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Invited</label>
+    </div>
+    <div class="small-9 medium-10 columns">
+      <span class="user-created-at">{{ $ctrl.user.created_at | date:'medium' }}</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Registered</label>
+    </div>
+    <div class="small-9 medium-10 columns">
+      <span class="user-registered-at">{{ $ctrl.user.registered_at | date:'medium' }}</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Status</label>
+    </div>
+    <div class="small-5 medium-3 columns">
+      <span class="user-status">{{ $ctrl.user.status }}</span>
+    </div>
+    <div class="small-4 medium-3 large-2 columns end">
+      <button class="button tiny uppercase resend-invite-button" ng-click="$ctrl.resendInvite($ctrl.user.id)" ng-if="$ctrl.canResendInvite()">Resend Invite</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div ng-if="$ctrl.canChangeSystemRole()">
+      <form name="$ctrl.form" ng-submit="$ctrl.applyRole()" novalidate>
+        <div class="small-3 medium-2 columns">
+          <label for="role_name" class="right inline" field-model="$ctrl.form.role_name">Role</label>
+        </div>
+        <div class="small-5 medium-3 columns">
+          <select name="role_name" ng-model="$ctrl.user.system_role" bp-field-class="$ctrl.form.role_name" bp-server-error>
+            <option value="user">&mdash; no role &mdash;</option>
+            <option value="admin">Admin</option>
+          </select>
+          <field-errors input-field="$ctrl.form.role_name"></field-errors>
+        </div>
+        <div class="small-4 medium-3 large-2 columns end">
+          <input type="submit" name="submit" value="Apply Role" class="button tiny apply-role uppercase">
+        </div>
+      </form>
+    </div>
+    <div ng-if="!$ctrl.canChangeSystemRole()">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Role</label>
+      </div>
+      <div class="small-9 medium-10 columns">
+        <span class="user-role">{{ $ctrl.user.system_role }}</span>
+      </div>
+    </div>
+  </div>
+</div>

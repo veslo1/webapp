@@ -1,0 +1,12 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="merchants">Merchants</bp-breadcrumb>
+  <a ui-sref="merchant.view({id: $ctrl.merchant.id})" class="ng-scope" href="#/merchants"><span class="ng-scope">{{ $ctrl.merchant.name }}</span></a>
+  <span class="sep"> / </span>
+  <bp-breadcrumb>New Location</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<merchant-location-form
+  on-save="$ctrl.createMerchantLocation(merchantLocation, form)"
+  merchant-id="$ctrl.merchantId"
+  merchant-location="$ctrl.merchantLocation"
+  button-label="Create Location"></merchant-location-form>

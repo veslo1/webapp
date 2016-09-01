@@ -1,0 +1,79 @@
+<h4>Applied Project Funds</h4>
+
+<hr/>
+
+<div class="row project-funds" ng-if="$ctrl.showViewSection()">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-6 medium-3 columns">
+        <p>
+        <strong>Labor</strong><br>
+        {{ $ctrl.funds.labor_funds | currency }}
+        </p>
+      </div>
+      <div class="small-6 medium-3 columns">
+        <p>
+        <strong>Overhead</strong><br>
+        {{ $ctrl.funds.overhead_funds | currency }}
+        </p>
+      </div>
+      <div class="small-6 medium-3 columns">
+        <p>
+        <strong>Profit</strong><br>
+        {{ $ctrl.funds.profit_funds | currency }}
+        </p>
+      </div>
+      <div class="small-6 medium-3 columns">
+        <p>
+        <strong>Material</strong><br>
+        {{ $ctrl.funds.material_funds | currency }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name="$ctrl.form" ng-submit="$ctrl.updateProjectFunds()" novalidate ng-if="$ctrl.showApplySection()">
+  <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+  <div class="row project-funds">
+    <div class="small-6 medium-3 columns">
+      <label bp-field-class="$ctrl.form.labor_funds">Labor *
+        <input type="text" ng-model="$ctrl.funds.labor_funds"
+        name="labor_funds" bp-field-class="$ctrl.form.labor_funds"
+        placeholder="Labor" ui-money-mask required>
+      </label>
+      <field-errors input-field="$ctrl.form.labor_funds"></field-errors>
+    </div>
+    <div class="small-6 medium-3 columns">
+      <label bp-field-class="$ctrl.form.overhead_funds">Overhead *
+        <input type="text" ng-model="$ctrl.funds.overhead_funds"
+        name="overhead_funds" bp-field-class="$ctrl.form.overhead_funds"
+        placeholder="Overhead" ui-money-mask required>
+      </label>
+      <field-errors input-field="$ctrl.form.overhead_funds"></field-errors>
+    </div>
+    <div class="small-6 medium-3 columns">
+      <label bp-field-class="$ctrl.form.profit_funds">Profit *
+        <input type="text" ng-model="$ctrl.funds.profit_funds"
+        name="profit_funds" bp-field-class="$ctrl.form.profit_funds"
+        placeholder="Profit" ui-money-mask required>
+      </label>
+      <field-errors input-field="$ctrl.form.profit_funds"></field-errors>
+    </div>
+    <div class="small-6 medium-3 columns">
+      <label bp-field-class="$ctrl.form.material_funds">Material *
+        <input type="text" ng-model="$ctrl.funds.material_funds"
+        name="material_funds" bp-field-class="$ctrl.form.material_funds"
+        placeholder="Material" ui-money-mask required>
+      </label>
+      <field-errors input-field="$ctrl.form.material_funds"></field-errors>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <input type="submit" name="submit" value="Apply" class="button small-expand uppercase" ng-disabled="$ctrl.form.$invalid">
+    </div>
+  </div>
+</form>

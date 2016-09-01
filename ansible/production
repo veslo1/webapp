@@ -1,0 +1,2 @@
+[buildpay-webapp]
+app.gobuildpay.com ansible_ssh_user=root

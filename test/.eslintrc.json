@@ -1,0 +1,34 @@
+{
+    "parser": "babel-eslint",
+    "extends": "standard",
+    "plugins": [
+        "standard"
+    ],
+    "ecmaFeatures": {
+        "classes": true
+    },
+    "rules": {
+      "semi": [1, "always"],
+      "spaced-comment": 0,
+      "space-before-function-paren": 0,
+      "quotes": 0,
+      "no-undef": 1,
+      "one-var": 0,
+      "indent": [1, 2],
+      "padded-blocks": 0,
+      "no-multiple-empty-lines": 0,
+      "no-unused-vars": 0,
+      "standard/object-curly-even-spacing": 0
+    },
+    "globals": {
+      "angular": 1,
+      "describe": 1,
+      "beforeEach": 1,
+      "inject": 1,
+      "afterEach": 1,
+      "it": 1,
+      "expect": 1,
+      "jasmine": 1,
+      "spyOn": 1
+    }
+}

@@ -1,0 +1,73 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="merchants">Merchants</bp-breadcrumb>
+  <bp-breadcrumb link="merchant.view">{{ $ctrl.merchant.name }}</bp-breadcrumb>
+  <bp-breadcrumb>{{ $ctrl.merchantLocation.name }}</bp-breadcrumb>
+
+  <button ng-if="$ctrl.canManageMerchants()"
+          class="button tiny uppercase edit-merchant-location-button inline right"
+          ui-sref="merchant.location.edit">Edit</button>
+</bp-breadcrumbs>
+
+<div class="tab-section clearfix merchant">
+  <div class="two-column-table">
+
+    <div class="row">
+      <bp-left-column>Store Number</bp-left-column>
+      <bp-right-column class='merchant-location-store-number'>
+        {{ $ctrl.merchantLocation.store_number }}
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Address</bp-left-column>
+      <div class="small-9 columns merchant-location-address">
+        <div class="row">
+          <div class="small-7 columns end">
+
+            <span class="street1">{{ $ctrl.merchantLocation.address.street1 }}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-7 columns end">
+            <span class="street2">{{ $ctrl.merchantLocation.address.street2 }}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-7 columns end">
+            <city-state-postal address="$ctrl.merchantLocation.address"></city-state-postal>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Office Phone</bp-left-column>
+      <bp-right-column class="merchant-location-primary-phone">
+        {{ $ctrl.merchantLocation.phone_numbers.primary }}
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Fax</bp-left-column>
+      <bp-right-column class="merchant-location-fax-phone">
+        {{ $ctrl.merchantLocation.phone_numbers.fax }}
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Primary Contact</bp-left-column>
+      <bp-right-column class="merchant-location-contact-full-name">
+        {{ $ctrl.merchantLocation.primary_contact_user.full_name }}
+      </bp-right-column>
+    </div>
+
+    <div class="row" ng-if="$ctrl.canManageMerchants()">
+      <bp-left-column>ACH Account</bp-left-column>
+      <bp-right-column class="merchant-location-bank-account-name">
+        {{ $ctrl.merchantLocation.bankAccountNameText() }}
+      </bp-right-column>
+    </div>
+  </div>
+</div>
+
+<terminal-list merchant-location-id="$ctrl.merchantLocationId" show-add-terminal-button="$ctrl.merchantLocation.isBankAccountVerified()" ng-if="$ctrl.canManageMerchants()"></terminal-list>

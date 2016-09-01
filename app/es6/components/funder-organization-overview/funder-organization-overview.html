@@ -1,0 +1,24 @@
+<div class="tab-section clearfix">
+  <h4 class="inline">Overview</h4>
+  <button class="button tiny uppercase edit-funder-organization-button inline right" ui-sref="funderOrg.overview.edit">Edit</button>
+  <hr/>
+
+  <div class="two-column-table">
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Funder Name</label>
+      </div>
+      <div class="small-9 medium-10 columns">
+        <span class="funder-organization-name">{{ $ctrl.funderOrganization.name }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Service Fee</label>
+      </div>
+      <div class="small-9 medium-10 columns">
+        <span class="funder-organization-service-fee">{{ $ctrl.funderOrganization.service_fee }}</span>
+      </div>
+    </div>
+  </div>
+</div>

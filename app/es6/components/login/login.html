@@ -1,0 +1,35 @@
+<form name="login.form" ng-submit="login.createSession()" novalidate>
+  <div class="row">
+    <div class="small-12 medium-6 large-5 columns">
+      <div ng-show="login.errorMessage" data-alert class="alert-box alert">
+        {{ login.errorMessage }}
+      </div>
+
+      <label bp-field-class="login.form.email">Email *
+        <input bp-field-class="login.form.email" type="email"
+        ng-model="login.user.email"
+        name="email" placeholder="Email" required>
+      </label>
+      <field-errors input-field="login.form.email"></field-errors>
+
+      <label bp-field-class="login.form.password">Password *
+        <input bp-field-class="login.form.password" type="password"
+        ng-model="login.user.password" name="password"
+        placeholder="Password" required>
+      </label>
+      <field-errors input-field="login.form.password"></field-errors>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <p><a class="forgot-password-link" ui-sref="forgot_password">Forgot Your Password?</a></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <input type="submit" name="submit" value="Log In" class="button small small-expand uppercase" ng-disabled="login.form.$invalid">
+    </div>
+  </div>
+</form>

@@ -1,0 +1,12 @@
+---
+
+webapp_server_hostname: buildpay-test.sketchdevservices.com
+api_server_url: https://buildpay-api-test.sketchdevservices.com
+
+codeship_user_authorized_key: ~/Dropbox/SketchDev/codeship_webapp_key.pub
+deploy_user_authorized_key: ~/.ssh/id_rsa.pub
+
+nginx_certificate_key: ~/Dropbox/SketchDev/sketchdevservices.key
+nginx_certificate: ~/Dropbox/SketchDev/sketchdevservices-bundle.crt
+
+dh_params_certificate: ~/Dropbox/SketchDev/dhparams.pem

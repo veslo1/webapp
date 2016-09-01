@@ -1,0 +1,51 @@
+<div class="two-column-table">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Requested By</label>
+      </div>
+      <div class="small-9 medium-10 columns">
+        <span class="payout-to-user">{{ $ctrl.fund.user.full_name }}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Fund Amount</label>
+      </div>
+      <div class="small-9 medium-10 columns">
+        <span class="payout-amount">{{ $ctrl.fund.fund_amount | currency }}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Approved</label>
+      </div>
+
+      <div class="small-5 medium-3 columns">
+        <span class="payout-approved-status">{{ $ctrl.fund.approvedText() }}</span>
+      </div>
+
+      <div class="small-4 medium-3 large-2 end columns">
+        <button ng-if="$ctrl.canApprove()" class="button tiny uppercase
+          approve-payout-button" ng-click="$ctrl.approveFund()">Approve</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Acknowledged</label>
+      </div>
+
+      <div class="small-5 medium-3 columns">
+        <span class="payout-acknowledged-status">{{ $ctrl.fund.acknowledgedText() }}</span>
+      </div>
+
+      <div class="small-4 medium-3 large-2 end columns">
+        <button ng-if="$ctrl.canAcknowledge()" class="button tiny
+          uppercase acknowledge-payout-button" ng-click="$ctrl.acknowledgeFund()">Acknowledge</button>
+      </div>
+    </div>
+  </div>
+</div>

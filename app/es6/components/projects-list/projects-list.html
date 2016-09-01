@@ -1,0 +1,44 @@
+<div ng-repeat="funderOfficeName in $ctrl.projectFunderOfficeNames">
+  <div class="tab-section projects-list clearfix">
+    <h4 class="project-office-name">{{ funderOfficeName }}</h4>
+    <hr/>
+
+    <div class="row collapse project bp-table-row headings">
+      <div class="small-5 medium-4 columns project-claim-number">
+        Claim Number
+      </div>
+      <div class="small-4 medium-4 columns project-name">
+        Name
+      </div>
+      <div class="small-3 medium-4 columns project-location">
+        Location
+      </div>
+    </div>
+    <div class="row collapse project bp-table-row" ng-repeat="project in $ctrl.projectsForFunderOffice(funderOfficeName)">
+      <div class="small-5 medium-4 columns project-claim-number">
+        <a ui-sref="project.overview.index({id: project.id})">{{ project.claim_number }}</a>
+      </div>
+      <div class="small-4 medium-4 columns project-name">
+        <a ui-sref="project.overview.index({id: project.id})">{{ project.name }}</a>
+      </div>
+      <div class="small-3 medium-4 columns project-location">
+        <a ui-sref="project.overview.index({id: project.id})">{{ project.city }}<span ng-show="project.city && project.state">, </span>{{ project.state }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-section projects-list clearfix" ng-show="!$ctrl.projects.length">
+  <div class="row collapse project bp-table-row headings">
+    <div class="small-5 medium-4 columns project-claim-number">
+      Claim Number
+    </div>
+    <div class="small-4 medium-4 columns project-name">
+      Name
+    </div>
+    <div class="small-3 medium-4 columns project-location">
+      Location
+    </div>
+  </div>
+  <bp-no-entries-row>No projects</bp-no-entries-row>
+</div>

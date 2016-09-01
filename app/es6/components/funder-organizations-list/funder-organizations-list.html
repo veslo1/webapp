@@ -1,0 +1,25 @@
+<div class="tab-section clearfix funder-orgs">
+  <div class="row collapse bp-table-row funder-org headings">
+    <div class="small-6 columns funder-org-name">
+      Name
+    </div>
+    <div class="show-for-medium-up small-6 columns funder-org-headquarters">
+      Headquarters
+    </div>
+  </div>
+
+  <div class="row collapse bp-table-row funder-org" ng-repeat="funderOrg in
+    $ctrl.funderOrgs">
+    <div class="small-6 columns funder-org-name">
+      <a ui-sref="funderOrg.overview.index({id: funderOrg.id})">{{ funderOrg.name }}</a>
+    </div>
+
+    <div class="show-for-medium-up small-6 columns funder-org-headquarters">
+      <!--<a ui-sref="funderOrg.overview.index({id: funderOrg.id})">-->
+        <!--<city-state-postal address="funderOrg.address"></city-state-postal>-->
+      <!--</a>-->
+    </div>
+  </div>
+
+  <bp-no-entries-row ng-show="!$ctrl.funderOrgs.length">No funders</bp-no-entries-row>
+</div>

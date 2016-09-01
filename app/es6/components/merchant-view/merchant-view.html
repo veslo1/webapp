@@ -1,0 +1,106 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="merchants">Merchants</bp-breadcrumb>
+  <bp-breadcrumb>{{ $ctrl.merchant.name }}</bp-breadcrumb>
+
+  <button ng-if="$ctrl.canManageMerchants()"
+          class="button tiny uppercase edit-merchant-button inline right"
+          ui-sref="merchant.edit({ id: $ctrl.merchant.id })">Edit</button>
+</bp-breadcrumbs>
+
+<div class="tab-section clearfix merchant">
+  <div class="two-column-table">
+
+    <div class="row">
+      <bp-left-column>Merchant ID</bp-left-column>
+      <bp-right-column class='merchant-id'>
+        {{ $ctrl.merchant.merchant_id }}
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Headquarters</bp-left-column>
+      <div class="small-9 columns merchant-address">
+        <span class="street1">{{ $ctrl.merchant.address.street1 }}</span><br>
+        <span class="street2">{{ $ctrl.merchant.address.street2 }}</span><br>
+        <city-state-postal address="$ctrl.merchant.address"></city-state-postal>
+      </div>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Office Phone</bp-left-column>
+      <bp-right-column class="merchant-primary-phone">
+        {{ $ctrl.merchant.phone_numbers.primary }}
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Fax</bp-left-column>
+      <bp-right-column class="merchant-fax-phone">
+        {{ $ctrl.merchant.phone_numbers.fax }}
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Primary Contact</bp-left-column>
+      <bp-right-column class="merchant-contact-full-name">
+        {{ $ctrl.merchant.primary_contact_user.full_name }}
+      </bp-right-column>
+    </div>
+  </div>
+</div>
+
+<div class="tab-section clearfix locations">
+  <div class="row tab-section-header-row">
+    <div class="small-8 columns">
+      <h4>Locations</h4>
+    </div>
+    <div class="small-4 columns">
+      <button ng-if="$ctrl.canManageMerchants()"
+              class="button tiny inline uppercase add-merchant-location-button right"
+              ui-sref="merchant.locations_new({ id: $ctrl.merchant.id })">Add Location</button>
+    </div>
+  </div>
+
+  <div class="row collapse gray-table">
+    <div class="small-12 columns">
+      <div class="row title-row">
+        <div class="small-4 columns">
+          <label>Name</label>
+        </div>
+
+        <div class="small-4 columns">
+          <label>Location</label>
+        </div>
+
+        <div class="small-4 columns">
+          <label>Primary Contact</label>
+        </div>
+      </div>
+
+      <div class="row location" ng-repeat="location in $ctrl.locations">
+        <div class="small-4 columns location-name">
+          <a ui-sref="merchant.location.view({ locationId: location.id })">
+            {{ ::location.name }}
+            <span ng-if="::location.name.length == 0">&nbsp;</span>
+          </a>
+        </div>
+        <div class="small-4 columns location-location">
+          <a ui-sref="merchant.location.view({ locationId: location.id })">
+            <city-state-postal address="location.address"></city-state-postal>
+          </a>
+        </div>
+        <div class="small-4 columns location-primary-contact">
+          <a ui-sref="merchant.location.view({ locationId: location.id })">
+            {{ ::location.primary_contact_user.full_name }}
+            <span ng-if="::location.primary_contact_user.full_name.length == 0">&nbsp;</span>
+          </a>
+        </div>
+      </div>
+
+      <bp-no-entries-row ng-show="!$ctrl.locations.length">No locations</bp-no-entries-row>
+    </div>
+  </div>
+</div>
+
+<merchant-bank-account-list merchant-id="$ctrl.merchantId"
+  ng-if="$ctrl.canManageMerchants()"></merchant-bank-account-list>

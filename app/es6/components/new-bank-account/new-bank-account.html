@@ -1,0 +1,255 @@
+<p>
+I (we) hereby authorize Buildpay to initiate credit or debit entries to my (our) Business Checking/Savings/Other account indicated below at the depository financial institution named below.
+</p>
+
+<p>This authorization is to remain in full effect until BuildPay, LLC has received written notification from me of its termination.</p>
+
+<p>Furthermore, if any such electronic debit(s) should be returned by my financial institution as Non-Sufficient Funds (NSF), I authorize BuildPay to collect a returned item fee from my account.</p>
+
+<p>Note: This is a permanent change and all subsequent payments will be handled through this electronic payment.</p>
+
+<p>All fields are required.</p>
+
+<div class="two-column-table">
+  <form name="$ctrl.form" ng-submit="$ctrl.save()" novalidate>
+
+    <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+    <h4>Company Information</h4>
+    <hr/>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.company_name" label="Company Name *">
+      <right-content>
+        <bp-text-input-with-errors
+          required="true"
+          name="company_name"
+          model="$ctrl.account.company_info.name"
+          field-model="$ctrl.form.company_name"
+          placeholder="Company Name"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.company_dba" label="Doing Business As">
+      <right-content>
+        <bp-text-input-with-errors
+          name="company_dba"
+          model="$ctrl.account.company_info.dba"
+          field-model="$ctrl.form.company_dba"
+          placeholder="Company DBA"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.company_ein" label="Company EIN *">
+      <right-content>
+        <bp-ein-input-with-errors
+          required="true"
+          field-model="$ctrl.form.company_ein"
+          name="company_ein"
+          model="$ctrl.account.company_info.ein"
+          placeholder="Company EIN"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.company_type" label="Company Type *">
+      <right-content>
+        <select class="company-type-dropdown" name="company_type" ng-model="$ctrl.account.company_info.type">
+          <option value="">-- Select One --</option>
+          <option ng-repeat="option in $ctrl.companyTypes" value="{{ option.value }}">{{ option.name }}</option>
+        </select>
+        <field-errors input-field="$ctrl.form.company_type"></field-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.company_website" label="Website">
+      <right-content>
+        <bp-text-input-with-errors
+          name="company_website"
+          model="$ctrl.account.company_info.website"
+          field-model="$ctrl.form.company_website"
+          placeholder="Company Website" bp-server-error></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <h4>Responsible Individual</h4>
+    <hr/>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.user_first_name" label="First Name *">
+      <right-content>
+        <bp-text-input-with-errors required
+          name="user_first_name"
+          model="$ctrl.account.user_info.first_name"
+          field-model="$ctrl.form.user_first_name"
+          placeholder="First Name"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.user_last_name" label="Last Name *">
+      <right-content>
+        <bp-text-input-with-errors required
+          name="user_last_name"
+          model="$ctrl.account.user_info.last_name"
+          field-model="$ctrl.form.user_last_name"
+          placeholder="Last Name"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <div class="row" bp-field-class="$ctrl.form.street1">
+      <bp-left-column inline>Address *</bp-left-column>
+
+      <div class="small-9 columns">
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="street1"
+            model="$ctrl.account.user_info.address.street1"
+            field-model="$ctrl.form.street1"
+            placeholder="Address 1" required></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="street2"
+            model="$ctrl.account.user_info.address.street2"
+            field-model="$ctrl.form.street2"
+            placeholder="Address 2"></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-3 columns">
+            <bp-text-input-with-errors name="city"
+            model="$ctrl.account.user_info.address.city"
+            field-model="$ctrl.form.city"
+            placeholder="City" required></bp-text-input-with-errors>
+          </div>
+
+          <div class="small-2 columns" bp-field-class="$ctrl.form.user_state">
+            <bp-state-dropdown name="user_state" model="$ctrl.account.user_info.address.state" field-model="$ctrl.form.user_state" required="true"></bp-state-dropdown>
+          </div>
+
+          <div class="small-2 columns end">
+            <bp-text-input-with-errors name="postal_code"
+            model="$ctrl.account.user_info.address.postal_code"
+            field-model="$ctrl.form.postal_code"
+            placeholder="Postal Code" required></bp-text-input-with-errors>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.user_phone_number" label="Phone Number *">
+      <right-content>
+        <bp-phone-input-with-errors
+          required="true"
+          field-model="$ctrl.form.user_phone_number"
+          name="user_phone_number"
+          model="$ctrl.account.user_info.phone_number"
+          placeholder="Phone Number"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.user_email" label="Email *">
+      <right-content>
+        <bp-email-input-with-errors
+          required="true"
+          field-model="$ctrl.form.user_email"
+          name="user_email"
+          model="$ctrl.account.user_info.email"
+          placeholder="Email"></bp-email-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <h4>Account Information</h4>
+    <hr/>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.account_name" label="Account Nickname *">
+      <right-content>
+        <bp-text-input-with-errors required
+          name="account_name"
+          model="$ctrl.account.account_info.account_name"
+          field-model="$ctrl.form.account_name"
+          placeholder="Account Nickname"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.account_type" label="Account Type *">
+      <right-content>
+        <select name="account_type" ng-model="$ctrl.account.account_info.account_type" bp-field-class="$ctrl.form.account_type" required>
+          <option value="">Account Type</option>
+          <option ng-repeat="accountType in $ctrl.accountTypeOptions" value="{{accountType.value}}">{{accountType.name}}</option>
+        </select>
+        <field-errors input-field="$ctrl.form.account_type"></field-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.routing_number" label="Routing Number *">
+      <right-content>
+        <bp-text-input-with-errors required
+          name="routing_number"
+          model="$ctrl.account.account_info.routing_number"
+          field-model="$ctrl.form.routing_number"
+          placeholder="Routing Number"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.routing_number_confirmation" label="Re-type Routing Number *">
+      <right-content>
+        <input type="text" ng-model="$ctrl.routing_number_confirmation" name="routing_number_confirmation"
+        placeholder="Re-type Routing Number" must-match="$ctrl.account.account_info.routing_number" required>
+        <field-errors input-field="$ctrl.form.routing_number_confirmation"></field-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.account_number" label="Account Number *">
+      <right-content>
+        <bp-text-input-with-errors required
+          name="account_number"
+          model="$ctrl.account.account_info.account_number"
+          field-model="$ctrl.form.account_number"
+          placeholder="Account Number"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.account_number_confirmation" label="Re-type Account Number *">
+      <right-content>
+        <input type="text" ng-model="$ctrl.account_number_confirmation" name="account_number_confirmation"
+        placeholder="Re-type Account Number" must-match="$ctrl.account.account_info.account_number" required>
+        <field-errors input-field="$ctrl.form.account_number_confirmation"></field-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <div class="row" bp-field-class="$ctrl.form.dwolla_ach_agreement">
+      <div class="small-9 small-offset-3 columns">
+        <div class="row">
+          <div class="small-12 columns tos-agreement-preface">
+            <p ng-if="$ctrl.showServiceProviderTos">
+              As a Service Provider, you expressly authorize BuildPay's payments provider, Dwolla to originate credit transfers to your financial institution.
+            </p>
+            <p ng-if="!$ctrl.showServiceProviderTos">
+            In order to use the payment functionality of our application, you must open a "White Label" account provided by Dwolla, Inc. ("Dwolla") and you must accept the <a href="https://www.dwolla.com/legal/tos?whitelabel" target="_blank">Dwolla Terms of Service</a> and <a href="https://www.dwolla.com/legal/privacy/" target="_blank">Privacy Policy</a>. Any funds held in the Dwolla account are held by Dwolla's financial institution partners as set out in the <a href="https://www.dwolla.com/legal/tos?whitelabel" target="_blank">Dwolla Terms of Service</a>. You authorize BuildPay to share your identity and account data with Dwolla for the purposes of opening and supporting your Dwolla account, and you are responsible for the accuracy and completeness of that data. You understand that you will access and manage your Dwolla account through the BuildPay application, and Dwolla account notifications will be sent by BuildPay, not Dwolla. BuildPay will provide customer support for your Dwolla account activity, and can be reached at 1.844.303.5123.
+            <p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-1 checkbox-column columns">
+            <input id="ach_agreement" class="tos-checkbox" type="checkbox" name="dwolla_ach_agreement" ng-model="$ctrl.account.dwolla_ach_agreement" ng-true-value="'YES'" ng-false-value="'NO'" required>
+          </div>
+          <div class="small-11 columns end">
+            <label for="ach_agreement" class="tos-agreement">
+              I agree that future payments will be processed by the
+              Dwolla payment system from the selected account above. In
+              order to cancel this authorization, I will change my payment
+              settings within my BuildPay account.
+            </label>
+          </div>
+        </div>
+      </div>
+     </div>
+
+    <div class="row">
+      <bp-submit-row>
+      <input type="submit" name="submit" value="Agree and Continue" class="button small-expand uppercase" ng-disabled="$ctrl.form.$invalid">
+      </bp-submit-row>
+    </div>
+  </form>
+</div>

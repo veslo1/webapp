@@ -1,0 +1,2 @@
+[buildpay-webapp]
+buildpay-staging.sketchdevservices.com ansible_ssh_user=root

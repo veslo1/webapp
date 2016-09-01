@@ -1,0 +1,155 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="transactions">Transactions</bp-breadcrumb>
+  <bp-breadcrumb>Transaction #{{ transactionView.transaction.id }}</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<div class="tab-section two-column-table">
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Date</label>
+    </div>
+    <div class="small-9 medium-10 columns transaction-date">
+      {{ transactionView.transaction.transacted_at | date:'medium' }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">User</label>
+    </div>
+    <div class="small-9 medium-10 columns user-full-name">
+      {{ transactionView.transaction.card.user.full_name }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Project</label>
+    </div>
+    <div class="small-9 medium-10 columns project-name">
+      {{ transactionView.transaction.project.name }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Merchant</label>
+    </div>
+    <div class="small-9 medium-10 columns merchant-name">
+      {{ transactionView.transaction.merchant.name }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Type</label>
+    </div>
+    <div class="small-9 medium-10 columns transaction-type">
+      {{ transactionView.transaction.typeText() }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Amount</label>
+    </div>
+    <div class="small-9 medium-10 columns transaction-amount">
+      {{ transactionView.transaction.amount | currency }}
+    </div>
+  </div>
+</div>
+
+<h4>Line Items</h4>
+<hr/>
+
+<div class="tab-section transaction-line-items">
+  <div class="row collapse bp-table-row line-item headings">
+    <div class="small-3 columns sku">
+      SKU
+    </div>
+
+    <div class="small-3 columns description">
+      Description
+    </div>
+
+    <div class="small-2 columns number-column quantity">
+      Quantity
+    </div>
+
+    <div class="small-2 columns number-column unit-price">
+      Unit Price
+    </div>
+
+    <div class="small-2 columns number-column net-amount">
+      Net Amount
+    </div>
+  </div>
+
+  <div class="row collapse bp-table-row line-item" ng-repeat="lineItem in transactionView.transaction.line_items">
+    <div class="small-3 columns sku">
+      {{ lineItem.sku_number }}
+    </div>
+    <div class="small-3 columns description">
+      {{ lineItem.description }}
+    </div>
+    <div class="small-2 columns number-column quantity">
+      {{ lineItem.quantity }}
+    </div>
+    <div class="small-2 columns number-column unit-price">
+      {{ lineItem.unit_price | currency }}
+    </div>
+    <div class="small-2 columns number-column net-amount">
+      {{ lineItem.net_amount | currency }}
+    </div>
+  </div>
+
+  <bp-no-entries-row ng-if="!transactionView.transaction.line_items.length">No line items</bp-no-entries-row>
+
+  <form name="transactionView.form" ng-submit="transactionView.createLineItem()" novalidate class="new-line-item">
+    <div class="row collapse bp-table-row line-item">
+      <h5>Add Line Item</h5>
+
+      <div class="small-3 columns sku">
+        <input type="text"
+        ng-model="transactionView.newLineItem.sku_number"
+        name="sku_number"
+        bp-field-class="transactionView.form.sku_number"
+        placeholder="SKU" required>
+      </div>
+      <div class="small-3 columns description">
+        <input type="text"
+        ng-model="transactionView.newLineItem.description"
+        name="description"
+        bp-field-class="transactionView.form.description"
+        placeholder="Description" required>
+      </div>
+      <div class="small-2 columns number-column quantity">
+        <input type="number"
+        ng-model="transactionView.newLineItem.quantity"
+        name="quantity"
+        bp-field-class="transactionView.form.quantity"
+        placeholder="Quantity" required>
+      </div>
+      <div class="small-2 columns number-column unit-price">
+        <input type="text"
+        ng-model="transactionView.newLineItem.unit_price"
+        name="unit_price"
+        bp-field-class="transactionView.form.unit_price"
+        placeholder="Unit Price" ui-money-mask min="0.01" required>
+      </div>
+      <div class="small-2 columns number-column net-amount">
+        <input type="text"
+        ng-model="transactionView.newLineItem.net_amount"
+        name="net_amount"
+        bp-field-class="transactionView.form.net_amount"
+        placeholder="Net Amount" ui-money-mask min="0.01" required>
+      </div>
+    </div>
+
+    <div class="row collapse bp-table-row line-item">
+      <div class="small-12 columns">
+        <input type="submit" name="submit" value="Create Line Item" class="button tiny small-expand uppercase submit-button" ng-disabled="transactionView.form.$invalid">
+      </div>
+    </div>
+  </form>
+</div>

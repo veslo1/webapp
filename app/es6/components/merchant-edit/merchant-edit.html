@@ -1,0 +1,114 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="merchants">Merchants</bp-breadcrumb>
+  <bp-breadcrumb link="merchant.view" no-separator="true">{{ $ctrl.merchant.name }}</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<div class="two-column-table">
+  <form name="$ctrl.form" ng-submit="$ctrl.updateMerchant()" novalidate>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.name" label="Merchant Name *">
+      <right-content>
+        <bp-text-input-with-errors required
+          name="name"
+          model="$ctrl.merchant.name"
+          field-model="$ctrl.form.name"
+          placeholder="Name"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.merchant_id" label="Merchant ID">
+      <right-content>
+        <bp-text-input-with-errors
+          name="merchant_id"
+          model="$ctrl.merchant.merchant_id"
+          field-model="$ctrl.form.merchant_id"
+          placeholder="Merchant ID"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <div class="row">
+      <div class="small-3 columns">
+        <label for="street1" class="inline right"
+          bp-field-class="$ctrl.form.street1">Address</label>
+      </div>
+
+      <div class="small-9 columns">
+        <div class="row">
+          <div class="small-7 columns end">
+            <input type="text" ng-model="$ctrl.merchant.address.street1" name="street1"
+            placeholder="Address 1"
+            bp-field-class="$ctrl.form.street1">
+            <field-errors input-field="$ctrl.form.street1"></field-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-7 columns end">
+            <input type="text" ng-model="$ctrl.merchant.address.street2" name="street2"
+            placeholder="Address 2"
+            bp-field-class="$ctrl.form.street2">
+            <field-errors input-field="$ctrl.form.street2"></field-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-3 columns">
+            <input type="text" ng-model="$ctrl.merchant.address.city" name="city"
+            placeholder="City"
+            bp-field-class="$ctrl.form.city">
+            <field-errors input-field="$ctrl.form.city"></field-errors>
+          </div>
+
+          <div class="small-2 columns">
+            <bp-state-dropdown name="state"
+            model="$ctrl.merchant.address.state"
+            field-model="$ctrl.form.state"></bp-state-dropdown>
+          </div>
+
+          <div class="small-2 columns end">
+            <input type="text" ng-model="$ctrl.merchant.address.postal_code" name="postal_code"
+            placeholder="Postal Code"
+            bp-field-class="$ctrl.form.postal_code">
+            <field-errors input-field="$ctrl.form.postal_code"></field-errors>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.primary_phone" label="Primary Phone">
+      <right-content>
+        <bp-phone-input-with-errors field-model="$ctrl.form.primary_phone" name="primary_phone"
+          model="$ctrl.merchant.phone_numbers.primary" placeholder="Primary Phone"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.fax" label="Fax">
+      <right-content>
+        <bp-phone-input-with-errors field-model="$ctrl.form.fax" name="fax"
+          model="$ctrl.merchant.phone_numbers.fax" placeholder="Fax Phone"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.primary_contact_user_id" label="Primary Contact">
+      <right-content>
+        <select name="primary_contact_user_id"
+          ng-model="$ctrl.merchant.primary_contact_user_id"
+          bp-field-class="$ctrl.form.primary_contact_user_id"
+          bp-convert-to-number>
+          <option value="">-- Select User --</option>
+          <option ng-repeat="user in
+          $ctrl.potentialPrimaryContacts"
+          value="{{user.id}}">{{user.full_name}}</option>
+        </select>
+        <field-errors input-field="$ctrl.form.primary_contact_user_id"></field-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <div class="row">
+      <div class="small-12 medium-3 medium-offset-3 columns">
+        <input type="submit" name="submit" value="Update"
+        class="button uppercase small small-expand" ng-disabled="$ctrl.form.$invalid">
+      </div>
+    </div>
+  </div>
+</div>

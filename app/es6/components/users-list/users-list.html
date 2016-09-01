@@ -1,0 +1,28 @@
+<div class="tab-section users-list clearfix">
+  <div class="row collapse user bp-table-row headings">
+    <div class="small-5 medium-3 large-4 columns user-full-name">
+      Name
+    </div>
+    <div class="show-for-medium-up small-4 medium-7 large-4 columns user-email">
+      Email
+    </div>
+    <div class="small-2 columns user-status">
+      Status
+    </div>
+  </div>
+
+  <div class="row collapse bp-table-row user" ng-repeat="user in $ctrl.users">
+    <div class="small-6 medium-4 large-4 columns user-full-name">
+      <a ui-sref="directory.user({ id: user.id })">{{ user.full_name }}</a>
+    </div>
+    <div class="show-for-medium-up small-4 columns user-email">
+      <a ui-sref="directory.user({ id: user.id })">{{ user.email }}</a>
+    </div>
+
+    <div class="small-2 columns user-status">
+      <a ui-sref="directory.user({ id: user.id })">{{ user.status }}</a>
+    </div>
+  </div>
+
+  <bp-no-entries-row ng-show="!$ctrl.users.length">No users</bp-no-entries-row>
+</div>

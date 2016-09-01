@@ -1,0 +1,131 @@
+<commit-labor-funds project="$ctrl.project"
+available-amount="$ctrl.overview.available_to_commit_or_request"
+form-closed="$ctrl.commitFormClosed"
+ng-if="$ctrl.commitFormEnabled"></commit-labor-funds>
+
+<div class="tab-section clearfix committed-funds">
+  <div class="row tab-section-header-row">
+    <div class="small-8 columns">
+      <h4>
+        Labor Commitments
+        <span ng-if="$ctrl.project.canCommitFunds()">
+          (<span class="available-to-commit">{{ $ctrl.overview.available_to_commit_or_request | currency }}</span> Available)
+        </span>
+      </h4>
+    </div>
+    <div class="small-4 columns">
+      <button class="button tiny inline right uppercase commit-labor-funds-button" ng-click="$ctrl.commitFundsButtonClicked()" ng-show="!$ctrl.commitFormEnabled" ng-if="$ctrl.project.canCommitFunds()">Commit Funds</button>
+    </div>
+  </div>
+
+  <div class="row collapse gray-table">
+    <div class="small-12 columns">
+      <div class="row title-row">
+        <div class="small-2 columns">
+          <label>Date</label>
+        </div>
+
+        <div class="small-3 columns">
+          <label>Committed By</label>
+        </div>
+
+        <div class="small-3 columns">
+          <label>Committed To</label>
+        </div>
+
+        <div class="small-2 columns">
+          <label>Status</label>
+        </div>
+
+        <div class="small-2 columns text-right">
+          <label class="fund-amount">Amount</label>
+        </div>
+      </div>
+
+      <div class="row committed-fund" ng-repeat="fund in $ctrl.commitments">
+        <div class="small-2 columns fund-created-at">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.created_at | date:'MM/dd/yyyy' }}</a>
+        </div>
+        <div class="small-3 columns user-full-name fund-by-user">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.from_user.full_name || 'System' }}</a>
+        </div>
+        <div class="small-3 columns user-full-name fund-to-user">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.to_user.full_name }}</a>
+        </div>
+        <div class="small-2 columns fund-status">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.statusText() }}</a>
+        </div>
+        <div class="small-2 columns fund-amount text-right">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.fund_amount | currency }}</a>
+        </div>
+      </div>
+
+      <bp-no-entries-row ng-show="!$ctrl.commitments.length">No funds</bp-no-entries-row>
+    </div>
+  </div>
+</div>
+
+<payout-request-form project="$ctrl.project"
+available-amount="$ctrl.overview.available_to_commit_or_request"
+form-closed="$ctrl.requestPayoutFormClosed"
+ng-if="$ctrl.requestPayoutFormEnabled"></payout-request-form>
+
+<div class="tab-section clearfix payouts"
+  ng-if="$ctrl.project.permissions.canViewPayouts()">
+  <div class="row tab-section-header-row">
+    <div class="small-8 columns">
+      <h4>
+        Payouts
+        <span ng-if="$ctrl.project.permissions.canRequestPayout()">
+          (<span class="available-to-request">{{ $ctrl.overview.available_to_commit_or_request | currency }}</span> Available)
+        </span>
+    </h4>
+    </div>
+    <div class="small-4 columns">
+      <button class="button tiny uppercase inline request-payout-button
+        right" ng-click="$ctrl.requestPayoutButtonClicked()"
+        ng-show="!$ctrl.requestPayoutFormEnabled"
+      ng-if="$ctrl.project.permissions.canRequestPayout()">Request
+    Payout</button>
+    </div>
+  </div>
+
+  <div class="row collapse gray-table">
+    <div class="small-12 columns">
+      <div class="row title-row">
+        <div class="small-2 columns">
+          <label>Date</label>
+        </div>
+
+        <div class="small-4 columns">
+          <label>Requested By</label>
+        </div>
+
+        <div class="small-4 columns">
+          <label>Status</label>
+        </div>
+
+        <div class="small-2 columns number-column">
+          <label>Amount</label>
+        </div>
+      </div>
+
+      <div class="row payout" ng-repeat="fund in $ctrl.payouts">
+        <div class="small-2 columns fund-created-at">
+          <a ui-sref="payout({ id: fund.id })">{{ ::fund.created_at | date:'MM/dd/yyyy' }}</a>
+        </div>
+        <div class="small-4 columns user-full-name fund-to-user">
+          <a ui-sref="payout({ id: fund.id })">{{ ::fund.user.full_name }}</a>
+        </div>
+        <div class="small-4 columns fund-status">
+          <a ui-sref="payout({ id: fund.id })">{{ ::fund.statusText() }}</a>
+        </div>
+        <div class="small-2 columns fund-amount number-column">
+          <a ui-sref="payout({ id: fund.id })">{{ ::fund.fund_amount | currency }}</a>
+        </div>
+      </div>
+
+      <bp-no-entries-row ng-show="!$ctrl.payouts.length">No payouts</bp-no-entries-row>
+    </div>
+  </div>
+</div>

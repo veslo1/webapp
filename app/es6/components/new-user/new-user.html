@@ -1,0 +1,65 @@
+<div class="two-column-table">
+  <form name="$ctrl.form" ng-submit="$ctrl.createUser()" novalidate>
+    <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+    <div class="row">
+      <bp-left-column>Email</bp-left-column>
+      <bp-right-column class="invite-email">
+      <strong>{{ $ctrl.invite.email }}</strong>
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.first_name">
+      <bp-left-column inline>First Name *</bp-left-column>
+      <bp-right-column input-column>
+      <bp-text-input-with-errors required
+      name="first_name"
+      model="$ctrl.user.first_name"
+      field-model="$ctrl.form.first_name"
+      placeholder="First Name"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.last_name">
+      <bp-left-column inline>Last Name *</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors required
+          name="last_name"
+          model="$ctrl.user.last_name"
+          field-model="$ctrl.form.last_name"
+          placeholder="Last Name"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.home_mobile_phone">
+      <bp-left-column inline>Mobile Phone *</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors name="home_mobile_phone"
+          model="$ctrl.user.home_mobile_phone"
+          field-model="$ctrl.form.home_mobile_phone"
+          placeholder="Mobile Number" required></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <bp-two-column-new-password-input label="Password" name="password" model="$ctrl.user.password"></bp-two-column-new-password-input>
+
+    <div class="row" bp-field-class="$ctrl.form.tos_agreement">
+      <div class="small-9 small-offset-3 columns">
+        <div class="row">
+          <div class="small-1 checkbox-column columns">
+            <input id="tos_agreement" class="tos-checkbox" type="checkbox" name="tos_agreement" ng-model="$ctrl.user.tos_agreement" ng-true-value="'YES'" ng-false-value="'NO'" required>
+          </div>
+          <div class="small-11 columns end">
+            <label for="tos_agreement" class="tos-agreement">I have read and agree to the
+              <a href="/#/terms-of-service" target="_blank">BuildPay Terms of Service</a> and the <a href="https://www.dwolla.com/legal/tos?whitelabel" target="_blank">Dwolla Terms of Service</a> and <a href="https://www.dwolla.com/legal/privacy/" target="_blank">Privacy Policy</a>.
+            </label>
+          </div>
+        </div>
+      </div>
+     </div>
+
+    <bp-submit-row>
+      <input type="submit" name="submit" value="Sign Up" class="button small-expand uppercase" ng-disabled="$ctrl.form.$invalid">
+    </bp-submit-row>
+  </form>
+</div>

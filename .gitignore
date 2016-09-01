@@ -1,0 +1,9 @@
+.vagrant
+/node_modules
+/dist
+/.tmp
+/.sass-cache
+/bower_components
+/jspm_packages
+app/bootstrap.min.js
+app/bootstrap.min.js.map

@@ -1,0 +1,81 @@
+<ui-view>
+  <div class="tab-section clearfix">
+    <button ng-if="$ctrl.canChangeFunder()" ng-show="!$ctrl.project.hasStarted()" class="button tiny uppercase add-funder-button right" ui-sref="project.members.addFunder">Change Funder</button>
+
+    <h4>Funder</h4>
+    <hr />
+
+    <div ng-if="$ctrl.funder" class="two-column-table funder-info">
+      <div class="row">
+        <div class="small-3 medium-2 columns">
+          <label for="right-label" class="right">Name</label>
+        </div>
+        <div class="small-9 medium-10 columns">
+          <span class="user-full-name">
+            <bp-project-member-link project-id="$ctrl.project.id" member-id="$ctrl.funder.id">{{ $ctrl.funder.full_name }}</bp-project-member-link>
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 medium-2 columns">
+          <label for="right-label" class="right">Email</label>
+        </div>
+        <div class="small-9 medium-10 columns">
+          <span class="user-email">
+            <bp-project-member-link project-id="$ctrl.project.id" member-id="$ctrl.funder.id">{{ $ctrl.funder.email }}</bp-project-member-link>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="!$ctrl.funder" class="two-column-table funder-info">
+      No Funder
+    </div>
+  </div>
+
+  <div class="tab-section clearfix">
+    <button ng-if="$ctrl.canChangeOwner()" ng-show="!$ctrl.project.hasStarted()" class="button tiny uppercase add-owner-button right" ui-sref="project.members.addOwner">Change Owner</button>
+
+    <h4>Owner</h4>
+    <hr />
+
+    <div ng-if="$ctrl.owner" class="two-column-table owner-info">
+      <div class="row">
+        <div class="small-3 medium-2 columns">
+          <label for="right-label" class="right">Name</label>
+        </div>
+        <div class="small-9 medium-10 columns">
+          <span class="user-full-name">
+            <bp-project-member-link project-id="$ctrl.project.id" member-id="$ctrl.owner.id">{{ $ctrl.owner.full_name }}</bp-project-member-link>
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 medium-2 columns">
+          <label for="right-label" class="right">Email</label>
+        </div>
+        <div class="small-9 medium-10 columns">
+          <span class="user-email">
+            <bp-project-member-link project-id="$ctrl.project.id" member-id="$ctrl.owner.id">{{ $ctrl.owner.email }}</bp-project-member-link>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="!$ctrl.owner" class="two-column-table owner-info">
+      No Owner
+    </div>
+  </div>
+
+  <div class="tab-section">
+    <button ng-if="$ctrl.canAddServiceProviders()"
+      class="button tiny uppercase add-service-provider-button right"
+      ui-sref="project.members.addServiceProvider">Add Service Provider</button>
+    <h4>Service Providers</h4>
+    <hr />
+
+    <project-service-providers-tree service-providers="$ctrl.service_providers"></project-service-providers-tree>
+  </div>
+</ui-view>

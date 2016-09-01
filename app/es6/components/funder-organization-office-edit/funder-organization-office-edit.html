@@ -1,0 +1,9 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="funderOrg.offices.index">Offices</bp-breadcrumb>
+  <bp-breadcrumb link="funderOrg.offices.office.overview">{{ $ctrl.funderOffice.name }}</bp-breadcrumb>
+  <bp-breadcrum>Edit</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<funder-organization-office-form
+  on-save="$ctrl.updateOffice(funderOrganizationOffice, form)"
+  funder-organization-office="$ctrl.updatedFunderOffice" show-primary-contact="$ctrl.showPrimaryContact"></funder-organization-office-form>

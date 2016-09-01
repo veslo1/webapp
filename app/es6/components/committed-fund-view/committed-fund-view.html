@@ -1,0 +1,49 @@
+<div class="two-column-table">
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">From</label>
+    </div>
+    <div class="small-9 medium-10 columns">
+      <span class="committed-fund-from-user">{{ $ctrl.fund.from_user.full_name }}</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">To</label>
+    </div>
+    <div class="small-9 medium-10 columns">
+      <span class="committed-fund-to-user">{{ $ctrl.fund.to_user.full_name }}</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Fund Amount</label>
+    </div>
+    <div class="small-9 medium-10 columns">
+      <span class="committed-fund-amount">{{ $ctrl.fund.fund_amount | currency }}</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Fund Type</label>
+    </div>
+    <div class="small-9 medium-10 columns">
+      <span class="committed-fund-type">{{ $ctrl.fund.fundTypeText() }}</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-2 columns">
+      <label for="right-label" class="right">Acknowledged</label>
+    </div>
+    <div class="small-5 medium-3 columns">
+      <span class="committed-fund-acknowledged-status">{{ $ctrl.fund.acknowledgedText() }}</span>
+    </div>
+    <div class="small-4 medium-3 large-2 end columns">
+      <button ng-if="$ctrl.canAcknowledge()" class="button tiny uppercase acknowledge-committed-fund-button" ng-click="$ctrl.acknowledgeFund()">Acknowledge</button>
+    </div>
+  </div>
+</div>

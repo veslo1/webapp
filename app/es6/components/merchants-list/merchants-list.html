@@ -1,0 +1,32 @@
+<div class="tab-section clearfix merchants">
+  <div class="row collapse bp-table-row merchant headings">
+    <div class="small-6 medium-4 large-4 columns merchant-name">
+      Name
+    </div>
+    <div class="show-for-medium-up small-4 columns merchant-location">
+      Location
+    </div>
+    <div class="small-2 columns merchant-primary-contact">
+      Primary Contact
+    </div>
+  </div>
+
+  <div class="row collapse bp-table-row merchant" ng-repeat="merchant in
+    merchantsIndex.merchants">
+    <div class="small-6 medium-4 large-4 columns merchant-name">
+      <a ui-sref="merchant.view({id: merchant.id})">{{ merchant.name }}</a>
+    </div>
+
+    <div class="show-for-medium-up small-4 columns merchant-location">
+      <a ui-sref="merchant.view({id: merchant.id})">
+        <city-state-postal address="merchant.address"></city-state-postal>
+      </a>
+    </div>
+
+    <div class="small-2 columns merchant-primary-contact">
+      <a ui-sref="merchant.view({id: merchant.id})">{{ merchant.primary_contact_user.full_name }}</a>
+    </div>
+  </div>
+
+  <bp-no-entries-row ng-show="!merchantsIndex.merchants.length">No merchants</bp-no-entries-row>
+</div>

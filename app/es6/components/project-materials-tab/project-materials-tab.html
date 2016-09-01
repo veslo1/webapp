@@ -1,0 +1,126 @@
+<commit-material-funds project="$ctrl.project" available-amount="$ctrl.overview.available_to_commit_or_request" form-closed="$ctrl.commitFormClosed" ng-if="$ctrl.commitFormEnabled"></commit-material-funds>
+
+<div class="tab-section clearfix committed-funds">
+  <div class="row tab-section-header-row">
+    <div class="small-8 columns">
+      <h4>
+        Material Commitments
+        <span ng-if="$ctrl.project.canCommitFunds()">
+          (<span class="available-to-commit">{{ $ctrl.overview.available_to_commit_or_request | currency }}</span> Available)
+        </span>
+      </h4>
+    </div>
+    <div class="small-4 columns">
+      <button class="button tiny inline right uppercase commit-material-funds-button" ng-click="$ctrl.commitFundsButtonClicked()" ng-show="!$ctrl.commitFormEnabled" ng-if="$ctrl.project.canCommitFunds()">Commit Funds</button>
+    </div>
+  </div>
+
+  <div class="row collapse gray-table">
+    <div class="small-12 columns">
+      <div class="row title-row">
+        <div class="small-2 columns">
+          <label>Date</label>
+        </div>
+
+        <div class="small-3 columns">
+          <label>Committed By</label>
+        </div>
+
+        <div class="small-3 columns">
+          <label>Committed To</label>
+        </div>
+
+        <div class="small-2 columns">
+          <label>Status</label>
+        </div>
+
+        <div class="small-2 columns text-right">
+          <label class="fund-amount">Amount</label>
+        </div>
+      </div>
+
+      <div class="row committed-fund" ng-repeat="fund in
+        $ctrl.commitments">
+        <div class="small-2 columns fund-created-at">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.created_at | date:'MM/dd/yyyy' }}</a>
+        </div>
+        <div class="small-3 columns user-full-name fund-by-user">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.from_user.full_name || 'System' }}</a>
+        </div>
+        <div class="small-3 columns user-full-name fund-to-user">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.to_user.full_name }}</a>
+        </div>
+        <div class="small-2 columns fund-status">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.statusText() }}</a>
+        </div>
+        <div class="small-2 columns fund-amount text-right">
+          <a ui-sref="committedFund({ id: fund.id })">{{ ::fund.fund_amount | currency }}</a>
+        </div>
+      </div>
+
+      <bp-no-entries-row ng-show="!$ctrl.commitments.length">No funds</bp-no-entries-row>
+    </div>
+  </div>
+</div>
+
+<card-load-request-form project="$ctrl.project"
+available-amount="$ctrl.overview.available_to_commit_or_request"
+form-closed="$ctrl.requestCardLoadFormClosed"
+ng-if="$ctrl.requestCardLoadFormEnabled"></card-load-request-form>
+
+<div class="tab-section clearfix card-loads" ng-if="$ctrl.project.permissions.canViewCardLoads()">
+  <div class="row tab-section-header-row">
+    <div class="small-8 columns">
+      <h4>
+        Card Loads
+        <span ng-if="$ctrl.project.permissions.canRequestCardLoad()">
+          (<span class="available-to-request">{{ $ctrl.overview.available_to_commit_or_request | currency }}</span> Available)
+        </span>
+    </h4>
+    </div>
+    <div class="small-4 columns">
+      <button class="button tiny uppercase inline request-card-load-button right" ng-click="$ctrl.requestCardLoadButtonClicked()" ng-show="!$ctrl.requestCardLoadFormEnabled" ng-if="$ctrl.project.permissions.canRequestCardLoad()">Request Card Load</button>
+    </div>
+  </div>
+
+  <div class="row collapse gray-table">
+    <div class="small-12 columns">
+      <div class="row title-row">
+        <div class="small-2 columns">
+          <label>Date</label>
+        </div>
+
+        <div class="small-4 columns">
+          <label>Requested By</label>
+        </div>
+
+        <div class="small-4 columns">
+          <label>Status</label>
+        </div>
+
+        <div class="small-2 columns number-column">
+          <label>Amount</label>
+        </div>
+      </div>
+
+      <div class="row card-load" ng-repeat="fund in $ctrl.cardLoads">
+        <div class="small-2 columns fund-created-at">
+          <a ui-sref="cardLoad({ id: fund.id })">{{ ::fund.created_at | date:'MM/dd/yyyy' }}</a>
+        </div>
+        <div class="small-4 columns user-full-name fund-to-user">
+          <a ui-sref="cardLoad({ id: fund.id })">{{ ::fund.user.full_name }}</a>
+        </div>
+        <div class="small-4 columns fund-status">
+          <a ui-sref="cardLoad({ id: fund.id })">{{ ::fund.statusText() }}</a>
+        </div>
+        <div class="small-2 columns fund-amount number-column">
+          <a ui-sref="cardLoad({ id: fund.id })">{{ ::fund.fund_amount | currency }}</a>
+        </div>
+      </div>
+
+      <bp-no-entries-row ng-show="!$ctrl.cardLoads.length">No funds</bp-no-entries-row>
+    </div>
+  </div>
+</div>
+
+<project-card-transactions-list project="$ctrl.project" ng-if="$ctrl.project.permissions.canViewProjectCardTransactions()"></project-card-transactions-list>

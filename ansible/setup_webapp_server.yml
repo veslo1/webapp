@@ -1,0 +1,11 @@
+---
+- name: Configure BuildPay WebApp Server
+  hosts: buildpay-webapp
+  sudo: yes
+
+  roles:
+    - packages
+    - setup_deploy_user
+    - cert_setup
+    - nginx
+    - buildpay_webapp

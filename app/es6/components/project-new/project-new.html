@@ -1,0 +1,100 @@
+<div class="two-column-table">
+  <form name="$ctrl.form" ng-submit="$ctrl.createProject()" novalidate>
+    <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+    <div class="row" bp-field-class="$ctrl.form.funder_office">
+      <bp-left-column inline>Project Funder Office *</bp-left-column>
+      <bp-right-column input-column>
+        <select name="funder_office" ng-model="$ctrl.funderOfficeId" bp-field-class="$ctrl.form.funder_office" required>
+
+          <option value="">-- Select Funder Office--</option>
+          <option ng-repeat="office in $ctrl.officesWithProjectCreatePermission" value="{{office.id}}">{{office.name}}</option>
+        </select>
+      </bp-right-column>
+    </div>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.name" label="Project Name *">
+      <right-content>
+        <bp-text-input-with-errors
+          required="true"
+          field-model="$ctrl.form.name"
+          name="name"
+          model="$ctrl.project.name"
+          placeholder="Project Name"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <div class="row" bp-field-class="$ctrl.form.claim_number">
+      <bp-left-column inline>Claim Number *</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors name="claim_number"
+          model="$ctrl.project.claim_number"
+          field-model="$ctrl.form.claim_number"
+          placeholder="Claim Number"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column inline>Address</bp-left-column>
+
+      <div class="small-9 columns">
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="street1"
+              model="$ctrl.project.address_1"
+              field-model="$ctrl.form.street1"
+              placeholder="Address 1"></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="street2"
+              model="$ctrl.project.address_2"
+              field-model="$ctrl.form.street2"
+              placeholder="Address 2"></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-3 columns">
+            <bp-text-input-with-errors name="city"
+              model="$ctrl.project.city"
+              field-model="$ctrl.form.city"
+              placeholder="City"></bp-text-input-with-errors>
+          </div>
+
+          <div class="small-2 columns">
+            <bp-state-dropdown name="state" model="$ctrl.project.state" field-model="$ctrl.form.state"></bp-state-dropdown>
+          </div>
+
+          <div class="small-2 columns end">
+            <bp-text-input-with-errors name="postal_code"
+              model="$ctrl.project.postal_code"
+              field-model="$ctrl.form.postal_code"
+              placeholder="Postal Code"
+              bp-server-error
+              bp-server-error-dependent-models="$ctrl.project.state">
+              </bp-text-input-with-errors>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <bp-two-column-money-input label="Material" name="material_funds" model="$ctrl.project.material_funds"></bp-two-column-money-input>
+
+    <bp-two-column-money-input label="Overhead" name="overhead_funds" model="$ctrl.project.overhead_funds"></bp-two-column-money-input>
+
+    <bp-two-column-money-input label="Labor" name="labor_funds" model="$ctrl.project.labor_funds"></bp-two-column-money-input>
+
+    <bp-two-column-money-input label="Profit" name="profit_funds" model="$ctrl.project.profit_funds"></bp-two-column-money-input>
+
+    <bp-two-column-textarea-input label="Description" name="description" model="$ctrl.project.description"></bp-two-column-textarea-input>
+
+    <bp-two-column-textarea-input label="Comments" name="comments" model="$ctrl.project.comments"></bp-two-column-textarea-input>
+
+    <bp-submit-row>
+      <input type="submit" name="submit" value="Create Project" class="button small-expand uppercase" ng-disabled="$ctrl.form.$invalid">
+    </bp-submit-row>
+  </form>
+</div>

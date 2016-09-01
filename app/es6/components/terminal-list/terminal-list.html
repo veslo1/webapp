@@ -1,0 +1,41 @@
+<div class="tab-section clearfix terminals">
+  <div class="row tab-section-header-row">
+    <div class="small-8 columns">
+      <h4>Terminals</h4>
+
+      <div class="hint" ng-if="!$ctrl.showAddTerminalButton">
+        To add a terminal, the location must have a verified ACH account associated.
+      </div>
+    </div>
+
+    <div class="small-4 columns">
+      <button class="button tiny inline uppercase new-merchant-terminal-button right"
+              ui-sref="merchant.location.terminals_new" ng-if="$ctrl.showAddTerminalButton">Add Terminal</button>
+    </div>
+  </div>
+
+  <div class="row collapse gray-table">
+    <div class="small-12 columns">
+      <div class="row title-row">
+        <div class="small-6 columns">
+          <label>Serial Number</label>
+        </div>
+
+        <div class="small-6 columns">
+          <label>Terminal Identifier</label>
+        </div>
+      </div>
+
+      <div class="row terminal" ng-repeat="terminal in $ctrl.terminals">
+        <div class="small-6 columns serial-number">
+          {{ ::terminal.serial_number }}
+        </div>
+        <div class="small-6 columns terminal-identifier">
+          {{ ::terminal.terminal_identifier }}
+        </div>
+      </div>
+
+      <bp-no-entries-row ng-show="!$ctrl.terminals.length">No terminals</bp-no-entries-row>
+    </div>
+  </div>
+</div>

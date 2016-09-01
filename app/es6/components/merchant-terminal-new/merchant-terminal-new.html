@@ -1,0 +1,44 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="merchants">Merchants</bp-breadcrumb>
+  <bp-breadcrumb link="merchant.view">{{ $ctrl.merchant.name }}</bp-breadcrumb>
+  <bp-breadcrumb link="merchant.location.view">{{ $ctrl.merchantLocation.name }}</bp-breadcrumb>
+  <bp-breadcrumb>New Teminal</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<div class="two-column-table">
+  <form name="$ctrl.form" ng-submit="$ctrl.createTerminal()" novalidate>
+    <div class="row">
+      <div class="small-3 columns">
+        <label for="serial_number" class="inline right">Serial Number *</label>
+      </div>
+      <div class="small-9 medium-4 columns end">
+        <input type="text" ng-model="$ctrl.terminal.serial_number"
+        name="serial_number" placeholder="Serial Number"
+        bp-field-class="$ctrl.form.serial_number" bp-server-error required>
+        <field-errors input-field="$ctrl.form.serial_number"></field-errors>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 columns">
+        <label for="terminal_identifier" class="inline right">Terminal Cert *</label>
+      </div>
+      <div class="small-9 medium-4 columns">
+        <textarea rows="10" ng-model="$ctrl.terminal.terminal_identifier"
+          name="terminal_identifier" placeholder="Terminal Cert"
+          bp-field-class="$ctrl.form.terminal_identifier" bp-server-error required></textarea>
+        <field-errors input-field="$ctrl.form.terminal_identifier"></field-errors>
+      </div>
+      <div class="hide-for-small-only medium-4 columns end">
+        <span>* Copy and paste the public cert contents here</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 medium-3 medium-offset-3 columns">
+        <input type="submit" name="submit" value="Create Terminal"
+        class="button uppercase small small-expand" ng-disabled="$ctrl.form.$invalid">
+      </div>
+    </div>
+  </form>
+</div>

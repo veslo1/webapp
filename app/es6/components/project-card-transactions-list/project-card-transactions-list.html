@@ -1,0 +1,30 @@
+<div class="tab-section clearfix card-transactions">
+  <div class="row tab-section-header-row">
+    <div class="small-6 columns">
+      <h4>My Card Tranactions
+        (<span class="card-transaction-total">{{ $ctrl.transactionTotal | currency }}</span> Total)
+      </h4>
+    </div>
+  </div>
+
+  <div class="row collapse transactions-list gray-table">
+    <div class="small-12 columns">
+      <div class="row title-row headings">
+        <div class="small-3 columns">
+          <label>Date</label>
+        </div>
+
+        <div class="small-5 columns">
+          <label>Merchant</label>
+        </div>
+
+        <div class="small-4 columns number-column end">
+          <label class="fund-amount">Amount</label>
+        </div>
+      </div>
+
+      <project-card-transaction transaction="transaction" ng-repeat="transaction in $ctrl.transactions"></project-card-transacion>
+      <bp-no-entries-row ng-show="!$ctrl.transactions.length">No Transactions</bp-no-entries-row>
+    </div>
+  </div>
+</div>

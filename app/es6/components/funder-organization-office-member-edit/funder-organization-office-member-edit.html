@@ -1,0 +1,55 @@
+<bp-breadcrumbs>
+  <bp-breadcrumb link="funderOrg.offices.index">Offices</bp-breadcrumb>
+  <bp-breadcrumb link="funderOrg.offices.office.overview">{{ $ctrl.funderOffice.name }}</bp-breadcrumb>
+  <bp-breadcrumb link="funderOrg.offices.office.overview">Members</bp-breadcrumb>
+  <bp-breadcrumb>{{ $ctrl.officeMember.user.full_name }}</bp-breadcrumb>
+</bp-breadcrumbs>
+
+<div class="two-column-table">
+  <div class="row">
+    <bp-left-column inline>Name</bp-left-column>
+    <bp-right-column class="user-full-name">
+      {{ $ctrl.officeMember.user.full_name }}
+    </bp-right-column>
+  </div>
+  <div class="row">
+    <bp-left-column inline>Email</bp-left-column>
+    <bp-right-column class="user-email">
+      {{ $ctrl.officeMember.user.email }}
+    </bp-right-column>
+  </div>
+
+  <form name="$ctrl.form" ng-submit="$ctrl.updateOfficeMember()" novalidate>
+    <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+    <div class="row" bp-field-class="$ctrl.form.parent_office_member_id">
+      <bp-left-column inline>Parent Member</bp-left-column>
+      <bp-right-column input-column>
+        <select name="parent_office_member_id"
+                ng-model="$ctrl.officeMember.parent_office_member_id"
+                bp-convert-to-number bp-server-error>
+          <option value="">-- Root member --</option>
+          <option ng-repeat="member in
+          $ctrl.potentialParentOfficeMembers"
+                  value="{{member.id}}">{{member.user.full_name}}</option>
+        </select>
+        <field-errors input-field="$ctrl.form.parent_office_member_id"></field-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column inline>Permissions</bp-left-column>
+      <bp-right-column input-column>
+        <label for="can_create_projects" class="tos-agreement">
+          <input id="can_create_projects" class="tos-checkbox" type="checkbox" name="can_create_projects" ng-model="$ctrl.officeMember.can_create_projects"> This user will create and manage projects</label>
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <div class="small-12 medium-3 medium-offset-3 columns">
+        <input type="submit" name="submit" value="Update"
+                                            class="button uppercase small small-expand">
+      </div>
+    </div>
+  </form>
+</div>

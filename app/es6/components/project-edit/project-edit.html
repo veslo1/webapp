@@ -1,0 +1,87 @@
+<div class="two-column-table">
+  <form name="$ctrl.form" ng-submit="$ctrl.updateProject()" novalidate>
+
+    <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+    <h4>Edit Project</h4>
+    <hr/>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.name" label="Project Name *">
+      <right-content>
+        <bp-text-input-with-errors
+          required="true"
+          field-model="$ctrl.form.name"
+          name="name"
+          model="$ctrl.project.name"
+          placeholder="Project Name"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+    <bp-two-column-row bp-field-class="$ctrl.form.claim_number" label="Claim Number *">
+      <right-content>
+        <bp-text-input-with-errors
+          required="true"
+          field-model="$ctrl.form.claim_number"
+          name="claim_number"
+          model="$ctrl.project.claim_number"
+          placeholder="Claim Number"></bp-text-input-with-errors>
+      </right-content>
+    </bp-two-column-row>
+
+
+    <div class="row">
+      <bp-left-column inline>Address</bp-left-column>
+
+      <div class="small-9 columns">
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="street1"
+              model="$ctrl.project.address_1"
+              field-model="$ctrl.form.street1"
+              placeholder="Address 1"></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="street2"
+              model="$ctrl.project.address_2"
+              field-model="$ctrl.form.street2"
+              placeholder="Address 2"></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-3 columns">
+            <bp-text-input-with-errors name="city"
+              model="$ctrl.project.city"
+              field-model="$ctrl.form.city"
+              placeholder="City"></bp-text-input-with-errors>
+          </div>
+
+          <div class="small-2 columns">
+            <bp-state-dropdown name="state" model="$ctrl.project.state" field-model="$ctrl.form.state"></bp-state-dropdown>
+          </div>
+
+          <div class="small-2 columns end">
+            <bp-text-input-with-errors name="postal_code"
+              model="$ctrl.project.postal_code"
+              field-model="$ctrl.form.postal_code"
+              placeholder="Postal Code"
+              bp-server-error
+              bp-server-error-dependent-models="$ctrl.project.state">
+              </bp-text-input-with-errors>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <bp-two-column-textarea-input label="Description" name="description" model="$ctrl.project.description"></bp-two-column-textarea-input>
+
+    <bp-two-column-textarea-input label="Comments" name="comments" model="$ctrl.project.comments"></bp-two-column-textarea-input>
+
+    <bp-submit-row>
+      <input type="submit" name="submit" value="Update" class="button small-expand uppercase" ng-disabled="$ctrl.form.$invalid">
+    </bp-submit-row>
+  </form>
+</div>

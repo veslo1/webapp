@@ -1,0 +1,25 @@
+<document-upload-notice ng-if="$ctrl.achAccount.needsDocumentUpload()" sref="merchant.documentUpload"></document-upload-notice>
+
+<div class="tab-section clearfix bank-accounts">
+  <div class="row tab-section-header-row">
+    <div class="small-8 columns">
+      <h4>ACH Accounts</h4>
+    </div>
+    <div class="small-4 columns">
+      <button class="button tiny inline uppercase add-merchant-bank-account-button right" ui-sref="merchant.bankAccounts.new">Add Bank Account</button>
+    </div>
+  </div>
+
+  <div class="row collapse gray-table">
+    <div class="small-12 columns">
+      <bp-bank-account-header-row></bp-bank-account-header-row>
+
+      <bp-bank-account-row account="accountRecord" ng-repeat="accountRecord in $ctrl.accounts">
+        <button ng-if="accountRecord.isVerifiable()" class="button uppercase inline tiny verify-button" ng-click="$ctrl.verifyAccount(accountRecord.id)">Verify</button>
+        <span ng-if="!accountRecord.isVerifiable()">{{ accountRecord.statusText() }}</span>
+      </bp-bank-account-row>
+
+      <bp-no-entries-row ng-show="!$ctrl.accounts.length">No Bank Accounts</bp-no-entries-row>
+    </div>
+  </div>
+</div>

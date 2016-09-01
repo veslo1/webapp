@@ -1,0 +1,19 @@
+<h2>{{ $ctrl.project.name }}</h2>
+
+<ul class="tabs header-tabs project-tabs">
+  <li ui-sref-active="{ active: 'project.overview' }" class="tab-title">
+    <a id="project-overview-tab-link" ui-sref="project.overview.index">Overview</a>
+  </li>
+  <li ui-sref-active="{ active: 'project.members' }" class="tab-title">
+    <a id="project-members-tab-link" ui-sref="project.members.index">Members</a>
+  </li>
+  <li ng-if="$ctrl.project.permissions.canViewMaterialFunds()"
+  ui-sref-active="{ active: 'project.materials' }" class="tab-title">
+    <a id="project-materials-tab-link" ui-sref="project.materials.overview">Materials</a>
+  </li>
+  <li ng-if="$ctrl.project.permissions.canViewLaborFunds()"
+  ui-sref-active="{ active: 'project.labor' }" class="tab-title">
+    <a id="project-labor-tab-link"
+      ui-sref="project.labor.overview">Labor</a>
+  </li>
+</ul>

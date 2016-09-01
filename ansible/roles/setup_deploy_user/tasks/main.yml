@@ -1,0 +1,9 @@
+---
+- name: Create deploy user
+  user: name=deploy
+
+- name: Add authorized key for deploy user
+  authorized_key: user=deploy key="{{ lookup('file', deploy_user_authorized_key) }}"
+
+- name: Add authorized key for codeship
+  authorized_key: user=deploy key="{{ lookup('file', codeship_user_authorized_key) }}"

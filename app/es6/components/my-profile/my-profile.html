@@ -1,0 +1,236 @@
+<div class="two-column-table">
+  <form name="$ctrl.form" ng-submit="$ctrl.updateProfile()" class='my-profile' novalidate>
+
+    <bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+    <h4>Personal Information</h4>
+    <hr/>
+
+    <div class="row">
+      <bp-left-column>Email</bp-left-column>
+      <bp-right-column class="user-email">
+        {{ $ctrl.profile.email }}
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Role</bp-left-column>
+      <bp-right-column class="user-role">
+        {{ $ctrl.profile.role }}
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Invited</bp-left-column>
+      <bp-right-column class="user-invited-at">
+        {{ $ctrl.profile.invited_at | date:'medium' }}
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column>Registered</bp-left-column>
+      <bp-right-column class="user-registered-at">
+        {{ $ctrl.profile.registered_at | date:'medium' }}
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.first_name">
+      <bp-left-column inline>First Name *</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors required
+          name="first_name"
+          model="$ctrl.profile.first_name"
+          field-model="$ctrl.form.first_name"
+          placeholder="First Name"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.last_name">
+      <bp-left-column inline>Last Name *</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors required
+          name="last_name"
+          model="$ctrl.profile.last_name"
+          field-model="$ctrl.form.last_name"
+          placeholder="Last Name"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.current_password">
+      <bp-left-column inline>Current Password</bp-left-column>
+      <bp-right-column input-column>
+        <input type="password" ng-model="$ctrl.profile.current_password" name="current_password"
+        placeholder="Current Password" bp-server-error>
+        <field-errors input-field="$ctrl.form.current_password"></field-errors>
+      </bp-right-column>
+    </div>
+
+    <bp-two-column-new-password-input label="New Password" name="new_password" model="$ctrl.profile.new_password"></bp-two-column-new-password-input>
+
+    <div class="row">
+      <bp-left-column inline>Address</bp-left-column>
+
+      <div class="small-9 columns">
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="street1"
+              model="$ctrl.profile.address.street1"
+              field-model="$ctrl.form.street1"
+              placeholder="Address 1"></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="street2"
+              model="$ctrl.profile.address.street2"
+              field-model="$ctrl.form.street2"
+              placeholder="Address 2"></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-3 columns">
+            <bp-text-input-with-errors name="city"
+              model="$ctrl.profile.address.city"
+              field-model="$ctrl.form.city"
+              placeholder="City"></bp-text-input-with-errors>
+          </div>
+
+          <div class="small-2 columns">
+            <bp-state-dropdown name="state" model="$ctrl.profile.address.state" field-model="$ctrl.form.state"></bp-state-dropdown>
+          </div>
+
+          <div class="small-2 columns end">
+            <bp-text-input-with-errors name="postal_code"
+              model="$ctrl.profile.address.postal_code"
+              field-model="$ctrl.form.postal_code"
+              placeholder="Postal Code"></bp-text-input-with-errors>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.home_phone">
+      <bp-left-column inline>Home Phone</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors name="home_phone"
+          model="$ctrl.profile.phone_numbers.home"
+          field-model="$ctrl.form.home_phone"
+          placeholder="Home Number"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.mobile_phone">
+      <bp-left-column inline>Mobile Phone</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors name="mobile_phone"
+          model="$ctrl.profile.phone_numbers.mobile"
+          field-model="$ctrl.form.mobile_phone"
+          placeholder="Mobile Number"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <h4>Company Information</h4>
+    <hr/>
+
+    <div class="row" bp-field-class="$ctrl.form.company_name">
+      <bp-left-column inline>Company Name</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors name="company_name"
+          model="$ctrl.profile.company.name"
+          field-model="$ctrl.form.company_name"
+          placeholder="Company Name"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row">
+      <bp-left-column inline>Address</bp-left-column>
+
+      <div class="small-9 columns">
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="company_street1"
+              model="$ctrl.profile.company.address.street1"
+              field-model="$ctrl.form.company_street1"
+              placeholder="Address 1"></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-7 columns end">
+            <bp-text-input-with-errors name="company_street2"
+              model="$ctrl.profile.company.address.street2"
+              field-model="$ctrl.form.company_street2"
+              placeholder="Address 2"></bp-text-input-with-errors>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-3 columns">
+            <bp-text-input-with-errors name="company_city"
+              model="$ctrl.profile.company.address.city"
+              field-model="$ctrl.form.company_city"
+              placeholder="City"></bp-text-input-with-errors>
+          </div>
+
+          <div class="small-2 columns">
+            <bp-state-dropdown name="company_state" model="$ctrl.profile.company.address.state" field-model="$ctrl.form.company_state"></bp-state-dropdown>
+          </div>
+
+          <div class="small-2 columns end">
+            <bp-text-input-with-errors name="company_postal_code"
+              model="$ctrl.profile.company.address.postal_code"
+              field-model="$ctrl.form.company_postal_code"
+              placeholder="Postal Code"></bp-text-input-with-errors>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.company_work_phone">
+      <bp-left-column inline>Work Phone</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors name="company_work_phone"
+          model="$ctrl.profile.company.phone_numbers.work"
+          field-model="$ctrl.form.company_work_phone"
+          placeholder="Work Number"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.company_mobile_phone">
+      <bp-left-column inline>Mobile Phone</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors name="company_mobile_phone"
+          model="$ctrl.profile.company.phone_numbers.mobile"
+          field-model="$ctrl.form.company_mobile_phone"
+          placeholder="Mobile Number"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.company_fax_phone">
+      <bp-left-column inline>Fax Number</bp-left-column>
+      <bp-right-column input-column>
+        <bp-text-input-with-errors name="company_fax_phone"
+          model="$ctrl.profile.company.phone_numbers.fax"
+          field-model="$ctrl.form.company_fax_phone"
+          placeholder="Fax Number"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <div class="row" bp-field-class="$ctrl.form.company_url">
+      <bp-left-column inline>Website URL</bp-left-column>
+
+      <bp-right-column input-column>
+        <bp-text-input-with-errors name="company_url"
+          model="$ctrl.profile.company.url"
+          field-model="$ctrl.form.company_url"
+          placeholder="Website URL"></bp-text-input-with-errors>
+      </bp-right-column>
+    </div>
+
+    <bp-submit-row>
+      <input type="submit" name="submit" value="Update" class="button small-expand uppercase" ng-disabled="$ctrl.form.$invalid">
+    </bp-submit-row>
+  </form>
+</div>

@@ -1,0 +1,17 @@
+<div class="tab-section bank-accounts clearfix">
+  <div class="row collapse gray-table">
+    <bp-bank-account-header-row></bp-bank-account-header-row>
+
+    <bp-bank-account-row account="accountRecord" ng-repeat="accountRecord
+    in $ctrl.accounts">
+      <button ng-if="accountRecord.isVerifiable()" class="button uppercase inline tiny verify-button" ng-click="$ctrl.verifyAccount(accountRecord.id)">Verify</button>
+      <span ng-if="!accountRecord.isVerifiable()">{{ accountRecord.statusText() }}</span>
+    </bp-bank-account-row>
+
+    <bp-no-entries-row ng-show="!$ctrl.accounts.length">No Bank Accounts</bp-no-entries-row>
+  </div>
+</div>
+
+<p>
+  <a ui-sref="myBankAccounts.new" class="button small uppercase small-expand new-bank-account-button">Add Bank Account</a>
+</p>

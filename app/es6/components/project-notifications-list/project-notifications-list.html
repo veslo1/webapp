@@ -1,0 +1,74 @@
+<div class="tab-section" ng-if="$ctrl.notifications.length">
+  <h4 class="notifications-title">Notifications</h4>
+  <hr/>
+
+  <div class="notifications-list">
+    <div class="row collapse event" ng-repeat="notification in $ctrl.notifications">
+      <div class="small-8 medium-10 columns notification-message">
+
+        <div class="notification-message" ng-if="notification.event_type === 'material_funds_committed_to_me'">
+          {{ ::notification.record.from_user.full_name }} committed {{ ::notification.record.fund_amount | currency }} in Material Funds.
+        </div>
+
+        <div class="notification-message" ng-if="notification.event_type === 'lop_funds_committed_to_me'">
+          {{ ::notification.record.from_user.full_name }} committed {{ ::notification.record.fund_amount | currency }} in LOP Funds.
+        </div>
+
+        <div class="notification-message" ng-if="notification.event_type === 'funds_acknowledged_by_user'">
+          {{ ::notification.record.to_user.full_name }} acknowledged {{ ::notification.record.fund_amount | currency }} in {{ ::notification.record.fund_type === 'material_funds' ? 'Material Funds' : 'LOP Funds' }}.
+        </div>
+
+        <div class="notification-message" ng-if="notification.event_type === 'payout_requested_by_user'">
+          {{ ::notification.record.user.full_name }} requested a payout
+          for {{ ::notification.record.fund_amount | currency }}.
+        </div>
+
+        <div class="notification-message" ng-if="notification.event_type === 'card_load_requested_by_user'">
+          {{ ::notification.record.user.full_name }} requested a card load for {{ ::notification.record.fund_amount | currency }}.
+        </div>
+
+        <div class="notification-message" ng-if="notification.event_type === 'card_load_approved_by_user'">
+          {{ ::notification.record.user.full_name }} approved card load of {{ ::notification.record.card_load.fund_amount | currency }}.
+        </div>
+
+        <div class="notification-message" ng-if="notification.event_type === 'card_load_acknowledged_by_user'">
+          {{ ::notification.record.user.full_name }} acknowledged card load of {{ ::notification.record.fund_amount | currency }}.
+        </div>
+
+        <div class="notification-message" ng-if="notification.event_type === 'payout_approved_by_user'">
+          {{ ::notification.record.user.full_name }} approved payout of
+          {{ ::notification.record.payout.fund_amount | currency }}.
+        </div>
+
+        <div class="notification-message" ng-if="notification.event_type === 'payout_acknowledged_by_user'">
+          {{ ::notification.record.user.full_name }} acknowledged payout
+          of {{ ::notification.record.fund_amount | currency }}.
+        </div>
+
+        <div class="notification-message" ng-if="notification.event_type === 'card_requested_for_user'">
+          A card has been requested for you.
+        </div>
+
+        <div class="notification-timestamp">
+          {{ ::notification.created_at | date:'MM/dd/yyyy, h:mm a' }}
+        </div>
+      </div>
+
+      <div class="small-4 medium-2 columns notification-actions">
+        <a class="button tiny uppercase right acknowledge-fund" ui-sref="committedFund({ id: notification.record.id })" ng-if="::['material_funds_committed_to_me', 'lop_funds_committed_to_me'].indexOf(notification.event_type) > -1  && notification.permissions.can_acknowledge">Acknowledge</a>
+
+        <a class="button tiny uppercase right acknowledge-payout"
+          ui-sref="payout({ id: notification.record.payout.id })"
+        ng-if="::notification.event_type === 'payout_approved_by_user' && notification.permissions.can_acknowledge">Acknowledge</a>
+        <a class="button tiny uppercase right approve-payout"
+          ui-sref="payout({ id: notification.record.id })"
+        ng-if="::(notification.record_type == 'Payout' && notification.permissions.can_approve)">Approve</a>
+
+        <a class="button tiny uppercase right acknowledge-card-load" ui-sref="cardLoad({ id: notification.record.card_load.id })" ng-if="::notification.event_type === 'card_load_approved_by_user' && notification.permissions.can_acknowledge">Acknowledge</a>
+        <a class="button tiny uppercase right approve-card-load" ui-sref="cardLoad({ id: notification.record.id })" ng-if="::(notification.record_type == 'CardLoad' && notification.permissions.can_approve)">Approve</a>
+
+        <a class="button tiny uppercase right dismiss-notification" ng-click="$ctrl.dismissNotification(notification)" ng-if="::!notification.permissions.can_acknowledge && !notification.permissions.can_approve">Dismiss</a>
+      </div>
+    </div>
+  </div>
+</div>

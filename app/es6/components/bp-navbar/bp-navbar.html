@@ -1,0 +1,38 @@
+<div id="buildpay-top-bar" class="contain-to-grid">
+  <top-bar>
+    <ul class="title-area">
+      <li class="name" ng-cloak>
+        <h1>
+          <a href="#/">BuildPay</a>
+        </h1>
+      </li>
+      <li toggle-top-bar class="menu-icon" ng-show="$ctrl.currentUser.isAuthenticated" ng-cloak><a><span>Menu</span></a></li>
+    </ul>
+
+    <top-bar-section ng-show="$ctrl.currentUser.isAuthenticated" ng-cloak>
+      <ul class="right">
+        <li ng-class="{ active: $ctrl.isActive('project')}"><a id="projects-link" href="#/projects">Projects</a></li>
+        <li class="divider"></li>
+        <li ng-if="$ctrl.canViewFunderOrganizations()" ng-class="{ active: $ctrl.isActive('funder')}"><a
+          id="funders-link" ui-sref="funder_organizations">Funders</a></li>
+        <li class="divider"></li>
+        <li ng-class="{ active: $ctrl.isActive('merchant')}"><a
+          id="merchants-link" ui-sref="merchants">Merchants</a></li>
+        <li class="divider"></li>
+        <li ng-if="$ctrl.canViewTransactions()" ng-class="{ active: $ctrl.isActive('transactions')}"><a
+          id="transactions-link" ui-sref="transactions">Transactions</a></li>
+        <li ng-if="$ctrl.canViewTransactions() && $ctrl.canViewDirectory()" class="divider"></li>
+        <li ng-if="$ctrl.canViewDirectory()" ng-class="{ active: $ctrl.isActive('directory')}"><a id="directory-link" href="#/directory/users">Directory</a></li>
+        <li ng-if="$ctrl.canViewDirectory()" class="divider"></li>
+        <li has-dropdown>
+          <a id="navbar-email">{{ $ctrl.currentUser.email }}</a>
+          <ul id="user-options-dropdown" top-bar-dropdown>
+            <li><a id="my-profile-link" ui-sref="myProfile">My Profile</a></li>
+            <li><a id="bank-accounts-link" ui-sref="myBankAccounts.overview" ng-if="$ctrl.canViewMyBankAccounts()">Bank Accounts</a></li>
+            <li><a id="logout-link" ng-click="$ctrl.destroySession()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </top-bar-section>
+  </top-bar>
+</div>

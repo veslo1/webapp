@@ -1,0 +1,89 @@
+<div ng-if="$ctrl.project.permissions.canViewProjectNotifications()">
+  <project-notifications-list></project-notifications-list>
+</div>
+
+<div class="tab-section clearfix">
+  <button ng-if="$ctrl.project.permissions.canEditProject()" class="button tiny uppercase edit-project-button right" ui-sref="project.edit">Edit Project</button>
+
+  <h4>Overview</h4>
+  <hr/>
+
+  <div class="two-column-table">
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Claim Number</label>
+      </div>
+      <div class="small-9 medium-10 columns">
+        <span class="project-claim-number">{{ $ctrl.project.claim_number }}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Location</label>
+      </div>
+      <div class="small-9 medium-10 columns">
+        <span class="project-address-1" ng-show="$ctrl.project.address_1">{{ $ctrl.project.address_1 }}<br></span>
+        <span class="project-address-2" ng-show="$ctrl.project.address_2">{{ $ctrl.project.address_2 }}<br></span>
+        <span class="project-city">{{ $ctrl.project.city }}</span><span ng-show="$ctrl.project.city && $ctrl.project.state">, </span> <span class="project-state">{{ $ctrl.project.state }}</span> <span class="project-postal-code">{{ $ctrl.project.postal_code }}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Description</label>
+      </div>
+      <div class="small-9 medium-10 columns">
+        <span class="project-description">{{ $ctrl.project.description }}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Comments</label>
+      </div>
+      <div class="small-9 medium-10 columns">
+        <span class="project-comments">{{ $ctrl.project.comments }}</span>
+      </div>
+    </div>
+
+    <div class="row" ng-if="$ctrl.project.permissions.canViewBankAccount()">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">ACH Account</label>
+      </div>
+      <div class="small-5 medium-3 columns">
+        <span class="project-bank-account-name">{{ $ctrl.project.bankAccountNameText() }}</span>
+      </div>
+      <div class="small-4 medium-3 large-2 end columns">
+        <button ng-if="$ctrl.project.permissions.canChangeBankAccount()"
+                ng-show="!$ctrl.project.hasStarted()"
+                class="button tiny inline uppercase set-project-bank-account-link"
+                ui-sref="project.overview.addBankAccount">Change</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 medium-2 columns">
+        <label for="right-label" class="right">Status</label>
+      </div>
+      <div class="small-5 medium-3 columns">
+        <span class="project-status">{{ $ctrl.project.statusText() }}</span>
+
+        <div ng-if="!$ctrl.project.hasStarted() && !$ctrl.project.canStartProject() && $ctrl.project.canStartErrors().length" class="prevalidation-errors">
+          <div ng-repeat="error in $ctrl.project.canStartErrors()">{{ error }}.</div>
+        </div>
+      </div>
+      <div class="small-4 medium-3 large-2 end columns">
+        <button ng-if="!$ctrl.project.hasStarted() && $ctrl.project.permissions.canStartProject()" ng-show="$ctrl.project.canStartProject()" class="button tiny inline uppercase start-project-button" ng-click="$ctrl.startProject()">Start Project</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-section clearfix" ng-if="$ctrl.project.permissions.canViewProjectAppliedFunds()">
+  <project-applied-funds project="$ctrl.project"></project-applied-funds>
+</div>
+
+<project-overview-funds-totals project="$ctrl.project"
+ng-if="$ctrl.project.permissions.canViewFundsTotals()"></project-overview-funds-totals>

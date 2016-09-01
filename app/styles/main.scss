@@ -1,0 +1,551 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic);
+
+$font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$crumb-line-height: rem-calc(14);
+$crumb-font-size: rem-calc(14);
+$crumb-font-transform: none;
+
+$oil: #333333;
+$white: #fff;
+$bp-blue: #36485E;
+$bp-orange: #F7A820;
+$bp-light-gray: #797979;
+$bp-darker-light-gray: #e1e1e1;
+$bp-table-alternate-row-color: #fafafa;
+
+$info-color: #008CBA;
+
+/*$primary-color: #36485E;*/
+$button-bg-color: $bp-blue;
+$topbar-bg-color: $bp-blue;
+
+@import "github/zurb/bower-foundation@5.5.3/scss/foundation/_functions.scss";
+
+$tabs-navigation-font-size: rem-calc(13);
+$tabs-navigation-padding: rem-calc(14);
+$tabs-navigation-active-bg-color: $white;
+/*$row-width: rem-calc(1200);*/
+
+$tab-border-color: #D3D3D3;
+/*$tabs-navigation-active-font-color: $white;*/
+
+$body-bg: $oil;
+
+$progress-bar-height: rem-calc(30);
+/*$progress-bar-color: transparent;*/
+
+// We use these to control the border styles
+$progress-bar-border-color: $bp-darker-light-gray;
+/*$progress-bar-border-color: #333;*/
+$progress-bar-border-size: 1px;
+$progress-bar-border-style: solid;
+/*$progress-bar-border-radius: $global-radius;*/
+
+// We use these to control the margin and padding
+/*$progress-bar-pad: rem-calc(2);*/
+$progress-bar-pad: 0;
+$progress-bar-margin-bottom: rem-calc(10);
+
+@import "github/zurb/bower-foundation@5.5.3/scss/foundation.scss";
+
+#main-content {
+  padding: 1.5rem 0 1rem 0;
+  background: $white;
+}
+
+#header-content {
+  background: $bp-darker-light-gray;
+  /*padding: 1rem 0;*/
+  padding: 1rem 0 0 0;
+
+  &.with-tabs {
+    padding: 1rem 0 0 0;
+  }
+
+  h2 {
+    margin-bottom: 1.25rem;
+  }
+}
+
+.header-tabs li {
+  border-top: 1px solid $tab-border-color;
+  border-left: 1px solid $tab-border-color;
+
+  &:last-child {
+    border-right: 1px solid $tab-border-color;
+  }
+}
+
+hr {
+  &.with-tabs-after {
+    margin-bottom: 0;
+  }
+
+  &.no-top-margin {
+    margin-top: 0;
+  }
+}
+
+#navbar-email {
+  font-weight: bold;
+}
+
+.project-tabs {
+  margin-top: 1.25rem;
+}
+
+input[type=email] {
+  text-transform: lowercase;
+}
+
+footer {
+  padding: 1rem 0;
+  color: $white;
+
+  p {
+    font-size: rem-calc(14);
+  }
+}
+
+.top-bar-section {
+  opacity: 1;
+  transition:0.5s linear all;
+
+  &.ng-hide {
+    opacity:0;
+  }
+}
+
+.badge {
+  @include label(
+  /*$padding:7px 16px 9px,*/
+  $text-size:13px,
+  $bg:$bp-blue,
+  $radius:1000px
+  /*$bg:#2ba6cb,*/
+  );
+}
+
+.inform-fixed {
+  top: 3.5rem;
+}
+
+button, .button {
+  &.inline {
+    margin-bottom: 0;
+  }
+}
+
+.inform-message {
+  background: #f7f7f7;
+
+  padding: 1em;
+  margin-bottom: 1rem;
+
+  .badge {
+    margin-right: 0.5em;
+  }
+
+  /*&.alert     { @include alert-style($alert-color); }*/
+
+  &.alert-success {
+    border-left: 6px solid $success-color;
+    /*background-color: #dff0d8;*/
+  }
+
+  /*&.alert-success   { @include alert-style($success-color); }*/
+  &.alert-secondary { @include alert-style($secondary-color); }
+  &.alert-warning { @include alert-style($warning-color); }
+  &.alert-info { @include alert-style($info-color); }
+
+  button {
+    float: right;
+    padding: 0.1em 0.5em;
+    margin-bottom: 0;
+  }
+}
+
+.notifications-list {
+  .event {
+    padding: 0.5em 0.5em;
+    border-bottom: 1px solid $bp-darker-light-gray;
+
+    &:nth-child(odd) {
+      background: $bp-table-alternate-row-color;
+    }
+
+    .notification-actions {
+      a.button {
+        margin: 0.5em 0;
+      }
+    }
+
+    .notification-timestamp {
+      color: $bp-light-gray;
+      font-size: 0.8em;
+    }
+  }
+}
+
+.bp-table-row {
+  padding: 0.5em 0.5em;
+  border-bottom: 1px solid $bp-darker-light-gray;
+
+  &:nth-child(even) {
+    background: $bp-table-alternate-row-color;
+  }
+
+  .button, button {
+    margin-bottom: 0;
+  }
+}
+
+.service-provider, .office-member {
+  .user-full-name {
+    &.level-1 {
+      padding-left: 1em;
+    }
+
+    &.level-2 {
+      padding-left: 2em;
+    }
+
+    &.level-3 {
+      padding-left: 3em;
+    }
+
+    &.level-4 {
+      padding-left: 4em;
+    }
+
+    &.level-5 {
+      padding-left: 5em;
+    }
+
+    &.level-6 {
+      padding-left: 6em;
+    }
+
+    &.level-7 {
+      padding-left: 7em;
+    }
+  }
+}
+
+.new-line-item .line-item {
+  border-bottom: none;
+
+  input {
+    margin-bottom: 0;
+  }
+}
+
+.tabs-content {
+  padding: 1rem 0 0 0;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+label {
+  text-transform: uppercase;
+}
+
+.transaction-line-items {
+  .headings {
+    color: #4d4d4d;
+    display: block;
+    font-size: 0.875rem;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+}
+
+.two-column-table {
+  .row {
+    margin-bottom: 1rem;
+  }
+
+  .left-column {
+    label {
+      text-align: right;
+    }
+  }
+
+  label {
+    line-height: 1.5rem;
+    margin-bottom: 0;
+
+    &.inline {
+      padding: $form-spacing / 3 + rem-calc($input-border-width) 0;
+    }
+  }
+
+  span {
+    line-height: 1.5rem;
+  }
+
+  button, .button {
+    margin-bottom: 0;
+  }
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.tab-section {
+  margin-bottom: 2rem;
+
+  .tab-section-header-row {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.project-info-container {
+  border: 1px solid $bp-darker-light-gray;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+@media #{$small-only} {
+  .small-expand {
+    width: 100%;
+  }
+}
+
+.icon-bubble {
+  height: 2rem;
+  width: 2rem;
+
+  @include label(
+  $padding:0.25rem 0.1rem,
+  $text-size:1.5em,
+  $bg:$oil,
+  $radius:50%
+  );
+}
+
+h4.funds-details-title {
+  text-align: left;
+  margin: 0;
+}
+
+.title-with-icon {
+  display: block;
+  margin: 0.5rem auto 0.5rem 0;
+  text-align: center;
+
+  .icon-bubble {
+    display: block;
+    margin: 0 auto 0.2em auto;
+  }
+}
+
+h4.funds-title {
+  padding: 1rem 0 0 0;
+
+  &.with-details-link {
+    padding-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.number-column {
+  text-align: right;
+
+  input {
+    text-align: right;
+  }
+}
+
+.gray-table {
+  .columns {
+    border-left: 1px solid $bp-darker-light-gray;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    &.number-column {
+      text-align: right;
+    }
+  }
+
+  .row {
+    border-bottom: 1px solid $bp-darker-light-gray;
+
+    &.alternate-gray:nth-child(even) {
+      background: $bp-table-alternate-row-color;
+    }
+
+    &.header-row {
+      background: #efefef;
+      border-top: 1px solid $bp-darker-light-gray;
+      /*border-bottom: 1px solid $bp-darker-light-gray;*/
+      border-bottom: none;
+    }
+
+    &.title-row {
+      background: #f5f5f5;
+      border-top: 1px solid $bp-darker-light-gray;
+      border-bottom: 1px solid $bp-darker-light-gray;
+
+      label {
+        font-weight: 600;
+      }
+    }
+
+    &.no-entries {
+      .columns {
+        padding: 0 0.5em;
+      }
+    }
+  }
+
+  .number-row {
+    .columns {
+      text-align: right;
+    }
+  }
+}
+
+.number-row {
+  &.number-header-row {
+    background: #efefef;
+    border-top: 1px solid $bp-darker-light-gray;
+
+    &.title-row {
+      background: #f5f5f5;
+      border-bottom: 1px solid $bp-darker-light-gray;
+
+      label {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .columns {
+    text-align: right;
+    border-left: 1px solid $bp-darker-light-gray;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    &:first-child {
+      border-left: none;
+    }
+  }
+}
+
+.available-balance-actions {
+  border-top: 1px solid $bp-darker-light-gray;
+
+  .columns {
+    text-align: right;
+    padding-top: 1rem;
+  }
+}
+
+.sep {
+  color: $tab-border-color;
+}
+
+span.inline {
+  display: inline-block;
+  /*line-height: 1.5rem;*/
+  padding: $form-spacing / 3 + rem-calc($input-border-width) 0;
+}
+
+h4.inline {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.title-column {
+  h5 {
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: right;
+  }
+}
+
+.row.section-title-row {
+  border-bottom: 1px solid $bp-darker-light-gray;
+  /*margin-bottom: 1.25rem;*/
+
+  button, .button {
+    /*margin-bottom: 0;*/
+  }
+}
+
+.overview-funds-totals {
+  text-align: center;
+
+  h3 {
+    margin-bottom: 0;
+  }
+
+  .fund-number-row {
+    text-align: left;
+  }
+}
+
+.inline-form {
+  padding: 1rem 0;
+  /*border: 1px solid $bp-darker-light-gray;*/
+}
+
+.refund {
+  color: red;
+}
+
+.prevalidation-errors {
+  font-size: 0.8em;
+  color: red;
+}
+
+.hint {
+  font-size: 0.9em;
+  font-style: italic;
+
+  ul {
+    margin-bottom: 0;
+    font-size: 0.9em;
+  }
+}
+
+.topbar-button {
+  margin-top: 0.25rem;
+}
+
+// for layout debugging, easier to add with-border class than style=border: 1px solid #000
+.with-border {
+  border: 1px solid #000;
+
+  &.red {
+    border: 1px solid red;
+  }
+}
+
+.checkbox-column {
+  // hack, dont do this
+  width: 4.333%;
+}
+
+.tos-agreement {
+  font-size: 0.9em;
+  text-transform: none;
+}

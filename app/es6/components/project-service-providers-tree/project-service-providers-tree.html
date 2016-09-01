@@ -1,0 +1,18 @@
+<div class="tab-section clearfix service-providers">
+  <div class="row collapse user bp-table-row headings">
+    <div class="small-10 medium-5 columns user-first-name">
+      Name
+    </div>
+    <div class="show-for-medium-up medium-5 columns user-email">
+      Email
+    </div>
+    <div class="small-2 columns user-status">
+      Status
+    </div>
+  </div>
+
+  <project-service-provider service-provider="serviceProvider"
+  ng-repeat="serviceProvider in $ctrl.serviceProviders" current-tree-level="0"></project-service-provider>
+
+  <bp-no-entries-row ng-show="!$ctrl.serviceProviders.length">No service providers</bp-no-entries-row>
+</div>

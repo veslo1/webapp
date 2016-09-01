@@ -1,0 +1,57 @@
+<p>Please upload a JPEG or PNG (up to 5 megabytes) to help verify your identity.</p>
+
+<h4>Select File</h4>
+<hr class="no-top-margin" />
+
+<bp-base-errors form-model='$ctrl.form'></bp-base-errors>
+
+<div class="row">
+  <div class="small-5 columns">
+    <form class="file-upload" name="$ctrl.form" ng-submit="$ctrl.save()" novalidate>
+      <div class="row">
+        <div class="small-3 columns" bp-field-class="$ctrl.form.file">
+          <label class="right">File</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="file"
+          ngf-select ng-model="$ctrl.upload.file" name="file"
+          ngf-accept="'image/png,image/jpeg,image/jpg'" ngf-pattern="'image/png,image/jpeg,image/jpg'"
+          ngf-max-files="1"
+          ngf-model-invalid="$ctrl.upload.errorFile"
+          ngf-accept="'image/*'" ngf-max-size="5MB" bp-server-error required>
+          </input>
+          <field-errors input-field="$ctrl.form.file"></field-errors>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="right">Progress</label>
+        </div>
+        <div class="small-9 columns">
+          <div class="progress radius small-11">
+            <span class="meter" style="width: {{$ctrl.upload.file.progress}}%"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-9 small-offset-3 columns">
+          <input type="submit" name="submit" value="Upload" class="button small small-expand uppercase" ng-disabled="$ctrl.uploadButtonDisabled()">
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="small-7 columns">
+    <strong>Partnership, General Partnership</strong><br>
+    <ul>
+      <li>EIN Letter (IRS-issued SS4 confirmation letter).</li>
+    </ul>
+
+    <strong>Limited Liability Corporation (LLC), Corporation</strong><br>
+    <ul>
+      <li>EIN Letter (IRS-issued SS4 confirmation letter).</li>
+    </ul>
+  </div>
+</div>
